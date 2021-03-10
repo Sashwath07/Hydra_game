@@ -24,8 +24,9 @@ public class WaveSpawner : MonoBehaviour
         waveCountdownText.text = string.Format("{0:00.00}", countdown);
     }
     IEnumerator SpawnWave(){
-        Debug.Log("Wave Incoming!");
         waveIndex++;
+        PlayerStats.Rounds++;
+
         for (int i = 0; i < waveIndex; i++)
         {
             SpawnEnemy();
