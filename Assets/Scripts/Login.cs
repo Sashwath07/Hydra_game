@@ -21,4 +21,8 @@ public class Login : MonoBehaviour
             Application.Quit();
         });
     }
+
+    public void SelectExit(){
+        Application.Quit();
+    }
 }
