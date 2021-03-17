@@ -9882,10 +9882,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemy: {fileID: 2698221778857937175, guid: 28a8fac1b05301c45ad91dbde91a8705, type: 3}
+  - enemy: {fileID: 2698221778857937175, guid: 99924e7975b80864eb71a1116633193a, type: 3}
     count: 5
     rate: 2
-  - enemy: {fileID: 2698221778857937175, guid: 28a8fac1b05301c45ad91dbde91a8705, type: 3}
+  - enemy: {fileID: 2698221778857937175, guid: 99924e7975b80864eb71a1116633193a, type: 3}
     count: 5
     rate: 2
   enemyPrefab: {fileID: 7699979514110480532, guid: 28a8fac1b05301c45ad91dbde91a8705,
