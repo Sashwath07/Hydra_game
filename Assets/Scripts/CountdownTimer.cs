@@ -6,7 +6,10 @@ using UnityEngine.Animations;
 
 public class CountdownTimer : MonoBehaviour
 {
+    private string sceneToLoad;
+
     public void startGame(){
-        SceneManager.LoadScene("Main Scene");
+        sceneToLoad = WorldSelect.WorldToLoad();
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
