@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +13,7 @@ public class WaveSpawner : MonoBehaviour
     public Transform spawnPoint;
     public float timeBetweenWaves = 5f;
     private float countdown = 2f;
-    public Text waveCountdownText;
+    public Text waveCountdownText; 
     private int waveIndex = 0;
 
     void Update (){

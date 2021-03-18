@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public void SelectStoryMode(){
-        SceneManager.LoadScene("Game Loading");
+        SceneManager.LoadScene("World Select");
     }
 
     public void LogOut(){
