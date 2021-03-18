@@ -28,6 +28,13 @@ TODO:
  - Rank students based on overall score
  - Rank students based on average score???
  - Generate report
+ - Retrive all these information from the database
 
 **Social**
 - Assignment creation
+
+**Login**
+- Create account & login 
+- Retrieve and save information into database
+
+
