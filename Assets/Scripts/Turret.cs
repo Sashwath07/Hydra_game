@@ -5,7 +5,7 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     private Transform target;
-
+    
     [Header("Attributes")]
     public float range = 15f;
     public float fireRate = 1f;
