@@ -9,6 +9,7 @@ public class Register : MonoBehaviour
     public InputField NewPasswordInput;
     public InputField ConfirmPasswordInput;
     public Button RegisterAccountButton;
+    public Text RegisterFeedback;
 
     // Start is called before the first frame update
     void Start()
