@@ -168,7 +168,6 @@ public class QuizGameManager : MonoBehaviour {
             events.DisplayResolutionScreen(type, Questions[currentQuestion].AddScore);
         }
 
-        AudioManager.Instance.PlaySound((isCorrect) ? "CorrectSFX" : "IncorrectSFX");
 
         if (type != UIManager.ResolutionScreenType.Finish)
         {
@@ -213,7 +212,6 @@ public class QuizGameManager : MonoBehaviour {
         {
             timeLeft--;
 
-            AudioManager.Instance.PlaySound("CountdownSFX");
 
             if (timeLeft < totalTime / 2 && timeLeft > totalTime / 4)
             {
