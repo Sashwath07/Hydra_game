@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Web : MonoBehaviour
 {
-
-    public IEnumerator Login(string username, string password)
+    public IEnumerator UserLogin(string username, string password)
     {
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username);
@@ -31,6 +31,8 @@ public class Web : MonoBehaviour
                 else {
                     //if not correct, show error
                     Debug.Log(www.downloadHandler.text);
+                    Main.Instance.Login.LoginFeedback.text = www.downloadHandler.text;
+                    Main.Instance.Login.LoginFeedback.gameObject.SetActive(true);
                 }
             }
         }
@@ -54,6 +56,8 @@ public class Web : MonoBehaviour
             else
             {
                 Debug.Log(www.downloadHandler.text);
+                Main.Instance.Register.RegisterFeedback.text = www.downloadHandler.text;
+                Main.Instance.Register.RegisterFeedback.gameObject.SetActive(true);
             }
         }
     }
