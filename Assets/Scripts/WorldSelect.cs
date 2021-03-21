@@ -35,5 +35,8 @@ public class WorldSelect : MonoBehaviour
         SceneManager.LoadScene("Game Loading");
     }
 
-    
+    public void OnSelectMainMenu(){
+
+        SceneManager.LoadScene("Main Menu");
+    }
 }
