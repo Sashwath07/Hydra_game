@@ -9,20 +9,17 @@ public class Login : MonoBehaviour
     public InputField PasswordInput;
     public Button LoginButton;
     public Button ExitButton;
+    public Text LoginFeedback;
 
     // Start is called before the first frame update
     void Start()
     {
         LoginButton.onClick.AddListener(() => {
-            StartCoroutine(Main.Instance.Web.Login(UsernameInput.text, PasswordInput.text));
+            StartCoroutine(Main.Instance.Web.UserLogin(UsernameInput.text, PasswordInput.text));
         });
 
         ExitButton.onClick.AddListener(() => {
             Application.Quit();
         });
-    }
-
-    public void SelectExit(){
-        Application.Quit();
     }
 }

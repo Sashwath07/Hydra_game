@@ -6,6 +6,8 @@ public class Main : MonoBehaviour
 {
     public static Main Instance;
     public Web Web; 
+    public Login Login;
+    public Register Register;
 
     // Start is called before the first frame update
     void Start()

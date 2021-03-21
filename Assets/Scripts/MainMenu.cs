@@ -6,11 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void SelectStoryMode(){
+    public void OnSelectStoryMode(){
         SceneManager.LoadScene("World Select");
     }
 
-    public void LogOut(){
+    public void OnSelectLogOut(){
         SceneManager.LoadScene("Login Scene");
+    }
+
+    public void OnSelectLeaderboard(){
+        SceneManager.LoadScene("Leaderboard");
     }
 }

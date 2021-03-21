@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/World 5.unity
     guid: ab1574bd5b67fd74f910d4826b17ba08
+  - enabled: 1
+    path: Assets/Scenes/Leaderboard.unity
+    guid: 1dc7b1c1809441248933b47dfe629294
+  - enabled: 1
+    path: Assets/Scenes/Quiz test.unity
+    guid: bd65de6c232632a4daca1d9dc9a4d89a
   m_configObjects: {}
