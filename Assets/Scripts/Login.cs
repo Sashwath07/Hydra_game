@@ -15,6 +15,8 @@ public class Login : MonoBehaviour
     public Text LoginFeedback;
     public string loginAPIURL = "https://223.25.69.254:10002/verify_login/";
 
+    public static string username;
+
     IEnumerator CallAPI(string URL){
         
         UnityWebRequest APIRequest = UnityWebRequest.Get(URL);
@@ -62,6 +64,8 @@ public class Login : MonoBehaviour
                 string loginAPIURLComplete = loginAPIURL + "username=" + UsernameInput.text + "&password=" + PasswordInput.text;
                 Debug.Log(loginAPIURLComplete);
                 StartCoroutine(CallAPI(loginAPIURLComplete));
+                
+                username = UsernameInput.text;
             }
 
         });
