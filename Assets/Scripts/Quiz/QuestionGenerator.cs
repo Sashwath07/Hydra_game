@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using SimpleJSON;
 using TMPro;
 using System.IO;
@@ -15,11 +16,14 @@ public class QuestionGenerator : MonoBehaviour
     public TMP_Text displayAnswer2;
     public TMP_Text displayAnswer3;
     public TMP_Text displayAnswer4;
+    public TMP_Text displayScore;
 
     public Button answerButton1;
     public Button answerButton2;
     public Button answerButton3;
     public Button answerButton4;
+
+    public Button nextQuestion;
 
 
     
@@ -30,8 +34,19 @@ public class QuestionGenerator : MonoBehaviour
 
     void Start()
     {
-        GenerateQuestion(0);
+        GenerateQuestion(QuizHandler.numOfQns-1);
+        QuizHandler.numOfQns--;
+        ResetButton();
+        // GenerateQuestion(0);
+    }
 
+    public void OnNextQuestion(){
+        if (QuizHandler.numOfQns > 0){
+            Start();
+        } else {
+            SceneManager.LoadScene("Quiz Ended");
+        }
+        
     }
 
     void GenerateQuestion(int questionNumber){
@@ -57,6 +72,8 @@ public class QuestionGenerator : MonoBehaviour
         int correctAnswer = file["message"][questionNo]["Answer"];
         
         if (correctAnswer == selectedAnswer){
+            QuizHandler.Score += 20;
+            displayScore.text = "Score: " + QuizHandler.Score.ToString();
             return true;
 
         } else{
@@ -71,6 +88,10 @@ public class QuestionGenerator : MonoBehaviour
         } else{
             answerButton1.GetComponent<Image>().color = Color.red;
         }
+
+        answerButton2.interactable = false;
+        answerButton3.interactable = false;
+        answerButton4.interactable = false;
     }
 
     public void OnSelectAnswer2(){
@@ -80,6 +101,10 @@ public class QuestionGenerator : MonoBehaviour
         } else {
             answerButton2.GetComponent<Image>().color = Color.red;
         }
+
+        answerButton1.interactable = false;
+        answerButton3.interactable = false;
+        answerButton4.interactable = false;
     }
 
     public void OnSelectAnswer3(){
@@ -89,6 +114,10 @@ public class QuestionGenerator : MonoBehaviour
         } else {
             answerButton3.GetComponent<Image>().color = Color.red;
         }
+
+        answerButton1.interactable = false;
+        answerButton2.interactable = false;
+        answerButton4.interactable = false;
     }
 
     public void OnSelectAnswer4(){
@@ -98,6 +127,22 @@ public class QuestionGenerator : MonoBehaviour
         } else{
             answerButton4.GetComponent<Image>().color = Color.red;
         }
+
+        answerButton1.interactable = false;
+        answerButton2.interactable = false;
+        answerButton3.interactable = false;
+    }
+
+    void ResetButton(){
+        answerButton1.GetComponent<Image>().color = Color.white;
+        answerButton2.GetComponent<Image>().color = Color.white;
+        answerButton3.GetComponent<Image>().color = Color.white;
+        answerButton4.GetComponent<Image>().color = Color.white;
+
+        answerButton1.interactable = true;
+        answerButton2.interactable = true;
+        answerButton3.interactable = true;
+        answerButton4.interactable = true;
     }
 
     
