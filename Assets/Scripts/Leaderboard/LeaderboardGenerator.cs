@@ -58,7 +58,12 @@ public class LeaderboardGenerator : MonoBehaviour
     }
 
     public void OnSelectMainMenu(){
-        SceneManager.LoadScene("Main Menu");
+        if (Login.usertype == "0") {
+            SceneManager.LoadScene("Main Menu");
+        }
+        else if (Login.usertype == "1") {
+            SceneManager.LoadScene("Teacher Menu");
+        }
     }
 
 }

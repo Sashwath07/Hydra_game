@@ -15,7 +15,11 @@
 //     void Start()
 //     {
 //         RegisterAccountButton.onClick.AddListener(() => {
-//             StartCoroutine(Main.Instance.Web.Register(NewUsernameInput.text, NewPasswordInput.text, ConfirmPasswordInput.text));
+//             if (NewUsernameInput.text == "" || NewPasswordInput.text == "" || ConfirmPasswordInput == "") {       
+//                 LoginFeedback.text = "Cannot leave field is empty!";
+//                 LoginFeedback.gameObject.SetActive(true);
+//             }
+//             else {
 //         });
 //     }
 // }
