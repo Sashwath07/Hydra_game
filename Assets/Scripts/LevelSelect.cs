@@ -13,17 +13,17 @@ public class LevelSelect : MonoBehaviour
 
     public void OnSelectSection1(){
         levelSelected = 1;
-        SceneManager.LoadScene("World " + WorldSelect.worldSelected.ToString());
+        SceneManager.LoadScene("Quiz");
     }
 
     public void OnSelectSection2(){
         levelSelected = 2;
-        SceneManager.LoadScene("World " + WorldSelect.worldSelected.ToString());
+        SceneManager.LoadScene("Quiz");
     }
 
     public void OnSelectSection3(){
         levelSelected = 3;
-        SceneManager.LoadScene("World " + WorldSelect.worldSelected.ToString());
+        SceneManager.LoadScene("Quiz");
     }
 
     public void OnSelectMainMenu(){
