@@ -17,7 +17,7 @@ public class Login : MonoBehaviour
 
     public static string username;
 
-    IEnumerator CallAPI(string URL){
+    IEnumerator LoginCheck(string URL){
         
         UnityWebRequest APIRequest = UnityWebRequest.Get(URL);
         APIRequest.certificateHandler = new WebRequestCert();   //force accept certificate
@@ -63,7 +63,7 @@ public class Login : MonoBehaviour
             else {
                 string loginAPIURLComplete = loginAPIURL + "username=" + UsernameInput.text + "&password=" + PasswordInput.text;
                 Debug.Log(loginAPIURLComplete);
-                StartCoroutine(CallAPI(loginAPIURLComplete));
+                StartCoroutine(LoginCheck(loginAPIURLComplete));
                 
                 username = UsernameInput.text;
             }

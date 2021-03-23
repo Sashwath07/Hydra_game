@@ -651,11 +651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf93d4c2e5b24d4cbb4fcc8b410adee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewUsernameInput: {fileID: 25139211}
-  NewPasswordInput: {fileID: 735021656}
-  ConfirmPasswordInput: {fileID: 2075894201}
-  RegisterAccountButton: {fileID: 183183220}
-  RegisterFeedback: {fileID: 607424310}
 --- !u!1 &147877315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,8 +1154,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 301613173}
-  - component: {fileID: 301613172}
-  - component: {fileID: 301613174}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -1168,18 +1161,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &301613172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301613171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43beb8f95aefe004e890585ea207fb1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &301613173
 Transform:
   m_ObjectHideFlags: 0
@@ -1194,21 +1175,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &301613174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301613171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9ec1754ad56b3443b4c5ece096ca7f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Web: {fileID: 0}
-  Login: {fileID: 527966303}
-  Register: {fileID: 146668500}
 --- !u!1 &375648837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,6 +1511,7 @@ MonoBehaviour:
   LoginButton: {fileID: 603315766}
   ExitButton: {fileID: 868460566}
   LoginFeedback: {fileID: 261946034}
+  loginAPIURL: https://223.25.69.254:10002/verify_login/
 --- !u!1 &603315764
 GameObject:
   m_ObjectHideFlags: 0
@@ -3010,7 +2977,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594326024}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 1f25b6873c3fcb04fb38b0fafd535949, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 124206ef90ea5de4ea0409a583940721, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 519420031}
@@ -3120,7 +3087,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
