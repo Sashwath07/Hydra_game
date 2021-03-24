@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
         string APIinfoCode = APIinfo["status_code"];
 
         Debug.Log(APIinfoMessage);
-        APIinfoMessage = APIinfoMessage.Trim(new Char[] { '(', ')' });
+        APIinfoMessage = APIinfoMessage.Trim(new Char[] { '"', ':' });
         Debug.Log(APIinfoMessage);
         string[] AccountInfo = APIinfoMessage.Split(',');
 
@@ -46,10 +46,8 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        string APIurl = "https://223.25.69.254:10002/retrieve_account/username=" + Login.username;
-        StartCoroutine(RetrieveAcct(APIurl));
-
-
+        //string APIurl = "https://223.25.69.254:10002/retrieve_account/username=" + Login.username;
+        //StartCoroutine(RetrieveAcct(APIurl));
 
         StoryModeButton.onClick.AddListener(() => {
             SceneManager.LoadScene("World Select", LoadSceneMode.Single);
