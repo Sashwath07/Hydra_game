@@ -1,13 +1,48 @@
-﻿using System.Collections;
+﻿//Manage the quiz end screen and send quiz score to database
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class QuizEnded : MonoBehaviour
 {
     public TMP_Text Score;
+    public Button Proceed;
+
+    private static int QuizScore = QuizHandler.Score;
+
+    private static string worldSelected = WorldSelect.worldSelected.ToString();
+    private static string sectionSelected = SectionSelect.sectionSelected.ToString();
+    private static string levelSelected = LevelSelect.levelSelected.ToString();
+    // private static string username = Login.username;     //use this when log in page is set up
+    private static string username = "SHAFIQ002";
+    private static string baseUrl = "https://223.25.69.254:10002/update_performance/username=";
+    private string Url = baseUrl + username + "&world=" + worldSelected + "&section=" + sectionSelected + "&no_of_correct=" + QuizScore.ToString();
 
     void Start(){
         Score.text = "Your Score: " + QuizHandler.Score.ToString();
-    }     
+        Proceed.interactable = false;
+        StartCoroutine(UpdateQuizScore(Url));
+        Proceed.interactable = true;
+    }
+
+    IEnumerator UpdateQuizScore(string APIUrl){
+        UnityWebRequest APIRequest = UnityWebRequest.Get(APIUrl);
+        APIRequest.certificateHandler = new WebRequestCert();   //force accept certificate
+
+        yield return APIRequest.SendWebRequest();
+
+        if (APIRequest.isNetworkError || APIRequest.isHttpError){
+            Debug.LogError(APIRequest.error);
+            yield break;
+        }
+    }  
+
+    public void OnSelectProceed(){
+        SceneManager.LoadScene(WorldSelect.WorldToLoad());
+    }   
 }
