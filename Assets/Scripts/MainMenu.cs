@@ -62,6 +62,10 @@ public class MainMenu : MonoBehaviour
         });
 
         LogoutButton.onClick.AddListener(() => {
+            SceneManager.LoadScene("Assignment", LoadSceneMode.Single);
+        });
+
+        LogoutButton.onClick.AddListener(() => {
             SceneManager.LoadScene("Login Scene", LoadSceneMode.Single);
         });
     }
