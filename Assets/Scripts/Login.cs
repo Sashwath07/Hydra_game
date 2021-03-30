@@ -10,14 +10,16 @@ public class Login : MonoBehaviour
 {
     public InputField UsernameInput;
     public InputField PasswordInput;
+    public Dropdown UserType;
     public Button LoginButton;
     public Button ExitButton;
     public Text LoginFeedback;
     public string loginAPIURL = "https://223.25.69.254:10002/verify_login/";
 
     public static string username;
+    public static string usertype;
 
-    IEnumerator CallAPI(string URL){
+    IEnumerator LoginCheck(string URL){
         
         UnityWebRequest APIRequest = UnityWebRequest.Get(URL);
         APIRequest.certificateHandler = new WebRequestCert();   //force accept certificate
@@ -34,7 +36,12 @@ public class Login : MonoBehaviour
         string APIinfoCode = APIinfo["status_code"];
 
         if (APIinfoMessage == "authorized login") {
-            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+            if (UserType.value == 0) {   
+                SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+            }
+            else if (UserType.value == 1) {
+                SceneManager.LoadScene("Teacher Menu", LoadSceneMode.Single);
+            }
         }
         else if (APIinfoMessage == "unauthorized login") {
             LoginFeedback.text = "Wrong Username or Password!";
@@ -61,11 +68,11 @@ public class Login : MonoBehaviour
                 LoginFeedback.gameObject.SetActive(true);
             }
             else {
-                string loginAPIURLComplete = loginAPIURL + "username=" + UsernameInput.text + "&password=" + PasswordInput.text;
-                Debug.Log(loginAPIURLComplete);
-                StartCoroutine(CallAPI(loginAPIURLComplete));
-                
                 username = UsernameInput.text;
+                usertype = UserType.value.ToString();
+                string loginAPIURLComplete = loginAPIURL + "username=" + UsernameInput.text + "&password=" + PasswordInput.text + "&accountType=" + usertype;
+                Debug.Log(loginAPIURLComplete);
+                StartCoroutine(LoginCheck(loginAPIURLComplete));
             }
 
         });
