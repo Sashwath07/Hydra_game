@@ -12,9 +12,13 @@ public class PlayerStats : MonoBehaviour
 
     public static int Rounds;
 
+    public static int score = 0;
+
     void Start(){
-        Money = startMoney;
+        //Money = startMoney;
+        Money = QuizHandler.Score * 5 + startMoney;
         Lives = startLives;
+
 
         Rounds = 0;
     }
