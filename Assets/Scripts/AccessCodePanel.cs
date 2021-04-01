@@ -158,7 +158,7 @@ public class AccessCodePanel : MonoBehaviour
         Debug.Log(AccessCode + "is type" + AccessCode.GetType());
         string Username = Login.username; // need find later
         Debug.Log("Username is "+ Username);
-        int AssignmentScore = FindScore();
+        float AssignmentScore = FindScore();
         Debug.Log("Score is "+ AssignmentScore);
         string UpdateUrl = "https://223.25.69.254:10002/update_assignment_performance/access_code=";
         UpdateUrl += AccessCode + "&username=" + Username + "&score=" + AssignmentScore;
@@ -177,7 +177,7 @@ public class AccessCodePanel : MonoBehaviour
                 score++;
             }
         }
-        return score;
+        return score/AnswerList.Count;
     }
 
     // API call to submit assignment results to the database for a student
