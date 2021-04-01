@@ -47,7 +47,8 @@ public class AccessCodePanel : MonoBehaviour
         });
 
         NextQuestionButton.onClick.AddListener(() => {
-            if (NextQuestionButton.GetComponent<TMP_Text>().text=="Next Question"){
+            string temp = NextQuestionButton.GetComponentInChildren<TMP_Text>().text;
+            if (temp=="Next Question"){
                 UpdateQuestion();
             }
             else{
@@ -77,19 +78,111 @@ public class AccessCodePanel : MonoBehaviour
         });
 
     }
+
+    public void ImportFirstQuestion(){
+        StartCoroutine(CallAPI());
+    }
+    // Calls API, takes the assignment with the corresponding access code and creates questions
+    IEnumerator CallAPI(){
+        Debug.Log(AccessCodeField.text);
+        string AccessCode = AccessCodeField.text;
+        Debug.Log(AccessCode);
+        string AccessCodeUrl = BaseURL + AccessCode;
+        Debug.Log(AccessCodeUrl);
+        UnityWebRequest APIRequest = UnityWebRequest.Get(AccessCodeUrl);
+        APIRequest.certificateHandler = new WebRequestCert();   //force accept certificate
+
+        yield return APIRequest.SendWebRequest();
+
+        // reads json file, adds to current AssignmentList for easier reference
+        JSONNode file = JSON.Parse(APIRequest.downloadHandler.text);
+        int AssignmentQuestionsCount = file["message"].Count;
+        Debug.Log(AssignmentQuestionsCount);
+        for(int i = 0; i<AssignmentQuestionsCount; i++){
+            AssignmentQuestion tempQuestion = new AssignmentQuestion();
+            Debug.Log("Loading Question Number " + i);
+            tempQuestion.answer = file["message"][i]["answer"];
+            tempQuestion.option1 = file["message"][i]["option1"];
+            tempQuestion.option2 = file["message"][i]["option2"];
+            tempQuestion.option3 = file["message"][i]["option3"];
+            tempQuestion.option4 = file["message"][i]["option4"];
+            tempQuestion.question = file["message"][i]["question"];
+            Debug.Log(file["message"][i]["question"]);
+
+            AssignmentQuestionList.Add(tempQuestion);
+        }
+
+        // Display first question
+        QuestionText.text = AssignmentQuestionList[0].question;
+        Option1Text.text = AssignmentQuestionList[0].option1;
+        Option2Text.text = AssignmentQuestionList[0].option2;
+        Option3Text.text = AssignmentQuestionList[0].option3;
+        Option4Text.text = AssignmentQuestionList[0].option4;
+
+        CurrentQuestionNumber = 1;
+    }
+
+    // temporary stores the answer selected for the question
+    public void QuestionAnswer(int qnAnswer){
+        Selectedanswer = qnAnswer;
+        Debug.Log("Selected Answer: " + Selectedanswer);
+    }
+
+    // Update relevant fields for the next question
+    public void UpdateQuestion(){
+        Debug.Log("You have selected answer " + Selectedanswer + " for Question " + CurrentQuestionNumber);
+        CurrentQuestionNumber++;
+        // Stores the current answer in a list for that question
+        AnswerList.Add(Selectedanswer);
+
+        // Also updates all text in the panel for the next question
+        QuestionText.text = AssignmentQuestionList[CurrentQuestionNumber-1].question;
+        Option1Text.text = AssignmentQuestionList[CurrentQuestionNumber-1].option1;
+        Option2Text.text = AssignmentQuestionList[CurrentQuestionNumber-1].option2;
+        Option3Text.text = AssignmentQuestionList[CurrentQuestionNumber-1].option3;
+        Option4Text.text = AssignmentQuestionList[CurrentQuestionNumber-1].option4;
+
+        // If next question is final question, change from 'next question' button to 'submint assignment' 
+        if(CurrentQuestionNumber==AssignmentQuestionList.Count){
+            string temp = "Submit Assignment";
+            NextQuestionButton.GetComponentInChildren<TMP_Text>().text = temp;
+            NextQuestionButton.GetComponentInChildren<TMP_Text>().enableAutoSizing = true;
+        }
+    }
+
     // when student clicks on the submit assignment button
     public void SubmitAssignment(){
-        string tempAC = AccessCodeField.GetComponent<TMP_Text>().text;
+        string tempAC = AccessCodeField.text;
+        Debug.Log("Access code is " +tempAC);
         int AccessCode = int.Parse(tempAC);
+        Debug.Log(AccessCode + "is type" + AccessCode.GetType());
         string Username = Login.username; // need find later
+        Debug.Log("Username is "+ Username);
         int AssignmentScore = FindScore();
+        Debug.Log("Score is "+ AssignmentScore);
         string UpdateUrl = "https://223.25.69.254:10002/update_assignment_performance/access_code=";
         UpdateUrl += AccessCode + "&username=" + Username + "&score=" + AssignmentScore;
+        Debug.Log(UpdateUrl);
         StartCoroutine(SubmitAssignmentAPI(UpdateUrl));
 
     }
+
+    // Calculate total score of assignment
+    public int FindScore(){
+        int score = 0;
+        Debug.Log("AnswerList length is "+AnswerList.Count);
+        Debug.Log("AssignmentQuestionList length is "+AssignmentQuestionList.Count);
+        for(int i = 0; i<AnswerList.Count;i++){
+            if(AnswerList[i]==AssignmentQuestionList[i].answer){
+                score++;
+            }
+        }
+        return score;
+    }
+
     // API call to submit assignment results to the database for a student
     IEnumerator SubmitAssignmentAPI(string url){
+        Debug.Log("Calling API");
         UnityWebRequest APIRequest = UnityWebRequest.Get(url);
         APIRequest.certificateHandler = new WebRequestCert();   //force accept certificate
 
@@ -107,78 +200,11 @@ public class AccessCodePanel : MonoBehaviour
 
     }
 
-    // Calculate total score of assignment
-    public int FindScore(){
-        int score = 0;
-        for(int i = 0; i<AnswerList.Count;i++){
-            if(AnswerList[i]==AssignmentQuestionList[i].answer){
-                score++;
-            }
-        }
-        return score;
-    }
+
     
-    // Update relevant fields for the next question
-    public void UpdateQuestion(){
-        CurrentQuestionNumber++;
-        // Stores the current answer in a list for that question
-        AnswerList.Add(Selectedanswer);
+    
 
-        // Also updates all text in the panel for the next question
-        QuestionText.text = AssignmentQuestionList[CurrentQuestionNumber-1].question;
-        Option1Text.text = AssignmentQuestionList[CurrentQuestionNumber-1].option1;
-        Option2Text.text = AssignmentQuestionList[CurrentQuestionNumber-1].option2;
-        Option3Text.text = AssignmentQuestionList[CurrentQuestionNumber-1].option3;
-        Option4Text.text = AssignmentQuestionList[CurrentQuestionNumber-1].option4;
 
-        // If next question is final question, change from 'next question' button to 'submint assignment' 
-        if(CurrentQuestionNumber==AssignmentQuestionList.Count){
-            string temp = "Submit Assignment";
-            NextQuestionButton.GetComponent<TMP_Text>().text = temp;
-        }
-    }
-
-    // temporary stores the answer selected for the question
-    public void QuestionAnswer(int qnAnswer){
-        Selectedanswer = qnAnswer;
-    }
-
-    public void ImportFirstQuestion(){
-        StartCoroutine(CallAPI());
-
-        // Display first question
-        QuestionText.text = AssignmentQuestionList[0].question;
-        Option1Text.text = AssignmentQuestionList[0].option1;
-        Option2Text.text = AssignmentQuestionList[0].option2;
-        Option3Text.text = AssignmentQuestionList[0].option3;
-        Option4Text.text = AssignmentQuestionList[0].option4;
-
-        CurrentQuestionNumber = 1;
-    }
-    // Calls API, takes the assignment with the corresponding access code and creates questions
-    IEnumerator CallAPI(){
-        string AccessCode = AccessCodeField.GetComponent<TMP_Text>().text;
-        string AccessCodeUrl = BaseURL + AccessCode;
-        UnityWebRequest APIRequest = UnityWebRequest.Get(AccessCodeUrl);
-        APIRequest.certificateHandler = new WebRequestCert();   //force accept certificate
-
-        yield return APIRequest.SendWebRequest();
-
-        // reads json file, adds to current AssignmentList for easier reference
-        JSONNode file = JSON.Parse(APIRequest.downloadHandler.text);
-        int AssignmentQuestionsCount = file["message"].Count;
-        for(int i = 0; i<AssignmentQuestionsCount; i++){
-            AssignmentQuestion tempQuestion = new AssignmentQuestion();
-            tempQuestion.answer = file["message"][i]["answer"];
-            tempQuestion.option1 = file["message"][i]["option1"];
-            tempQuestion.option2 = file["message"][i]["option2"];
-            tempQuestion.option3 = file["message"][i]["option3"];
-            tempQuestion.option4 = file["message"][i]["option4"];
-            tempQuestion.question = file["message"][i]["question"];
-
-            AssignmentQuestionList.Add(tempQuestion);
-        }
-    }
 }
 
 [SerializeField]

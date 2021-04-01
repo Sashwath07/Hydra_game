@@ -1388,6 +1388,7 @@ MonoBehaviour:
   StoryModeButton: {fileID: 2015236810}
   PVPButton: {fileID: 515727812}
   LeaderboardButton: {fileID: 565593006}
+  AssignmentButton: {fileID: 351672440}
   LogoutButton: {fileID: 83313429}
   UsernameText: {fileID: 1034208199}
   LevelText: {fileID: 1720575000}
