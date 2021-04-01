@@ -17,8 +17,15 @@ public class MainMenu : MonoBehaviour
     public Button LogoutButton;
 
     public Text UsernameText;
-    public Text LevelText;
+    public Text ProficiencyText;
+    public Text PointsText;
     public Text WorldText;
+    public Image AvatarIcon;
+    public Sprite FireAvatar;
+    public Sprite WaterAvatar;
+    public Sprite WindAvatar;
+    public Sprite EarthAvatar;
+
 
     IEnumerator RetrieveAcct(string URL){
         
@@ -36,20 +43,33 @@ public class MainMenu : MonoBehaviour
         string APIinfoMessage = APIinfo["message"];
         string APIinfoCode = APIinfo["status_code"];
 
-        Debug.Log(APIinfoMessage);
-        APIinfoMessage = APIinfoMessage.Trim(new Char[] { '"', ':' });
-        Debug.Log(APIinfoMessage);
-        string[] AccountInfo = APIinfoMessage.Split(',');
+        UsernameText.text = APIinfo["message"]["Username"];
+        ProficiencyText.text = "Proficiency: " + APIinfo["message"]["Proficiency"];
+        PointsText.text = "Points: " + APIinfo["message"]["Points"];
+        WorldText.text = "World: " + APIinfo["message"]["CurrentWorld"];
 
-        UsernameText.text = AccountInfo[0].Replace("'", "");
-        LevelText.text = "Level " + AccountInfo[1];
-        WorldText.text = "Current World: " + AccountInfo[2];
+        if (APIinfo["message"]["Avatar"] == 1) {
+            AvatarIcon.sprite = FireAvatar;
+        }
+        else if (APIinfo["message"]["Avatar"] == 2) {
+            AvatarIcon.sprite = WaterAvatar;
+        }
+        else if (APIinfo["message"]["Avatar"] == 3) {
+            AvatarIcon.sprite = WindAvatar;
+        }
+        else if (APIinfo["message"]["Avatar"] == 4) {
+            AvatarIcon.sprite = EarthAvatar;
+        }
+        else {
+            Debug.Log(APIinfo["message"]["Avatar"]);
+        }
+        
     }
 
     void Start()
     {
-        //string APIurl = "https://223.25.69.254:10002/retrieve_account/username=" + Login.username;
-        //StartCoroutine(RetrieveAcct(APIurl));
+        string APIurl = "https://223.25.69.254:10002/retrieve_account/username=" + Login.username;
+        StartCoroutine(RetrieveAcct(APIurl));
 
         StoryModeButton.onClick.AddListener(() => {
             SceneManager.LoadScene("World Select", LoadSceneMode.Single);

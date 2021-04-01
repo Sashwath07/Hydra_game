@@ -46,7 +46,7 @@ public class LeaderboardGenerator : MonoBehaviour
         JSONNode file = JSON.Parse(APIRequest.downloadHandler.text);
         for (int i = 0; i < file["message"].Count; i++)
         {
-            if ((string)file["message"][i]["Username"] == playerName){
+            if ((string)file["message"][i]["Username"] == playerName.ToUpper()){
 
                 playerIndex = i;
                 break;

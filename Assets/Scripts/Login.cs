@@ -71,7 +71,6 @@ public class Login : MonoBehaviour
                 username = UsernameInput.text;
                 usertype = UserType.value.ToString();
                 string loginAPIURLComplete = loginAPIURL + "username=" + UsernameInput.text + "&password=" + PasswordInput.text + "&accountType=" + usertype;
-                Debug.Log(loginAPIURLComplete);
                 StartCoroutine(LoginCheck(loginAPIURLComplete));
             }
 
