@@ -35,5 +35,10 @@ public class PvpJoinRoom : MonoBehaviour
         if (APIinfo["status_code"] == 400){
             enterAccessCode.text = "Invalid code, please try again";
         }
+        if (APIinfo["status_code"] == 200){
+            enterAccessCode.text = "Joining room...";
+            //retrieve world section level info
+            //load selected world section level
+        }
     }
 }
