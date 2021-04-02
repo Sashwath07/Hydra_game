@@ -18,6 +18,10 @@ public class PvpJoinRoom : MonoBehaviour
     // private static string Url = "https://223.25.69.254:10002/enter_pvp_room/username=<username>&access_code=<access_code>";
     private string APIUrl = baseUrl + username + "&access_code=" + accessCode;
 
+    public void OnJoinRoom(){
+        StartCoroutine(CallAPI());
+    }
+
     IEnumerator CallAPI(){
         
         UnityWebRequest APIRequest = UnityWebRequest.Get(APIUrl);
