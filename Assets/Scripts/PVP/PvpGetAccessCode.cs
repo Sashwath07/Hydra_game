@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -10,9 +10,13 @@ public class PvpGetAccessCode : MonoBehaviour
     public TMP_Text displayAccessCode;
     public TMP_Text enterAccessCode;
 
-    private static string accessCode;
-    private string APIUrl = "https://223.25.69.254:10002/create_pvp_room";
+    private static string WorldSelected = PVP.WorldSelected.ToString();
+    private static string SectionSelected = PVP.SectionSelected.ToString();
+    private static string LevelSelected = PVP.LevelSelected.ToString();
 
+    // private string Url = "https://223.25.69.254:10002/create_pvp_room";
+    private static string baseUrl = "https://223.25.69.254:10002/create_pvp_room/world=";
+    private static string APIUrl = baseUrl + WorldSelected + "&section" + SectionSelected + "&level=" + LevelSelected;
     void Start(){
         StartCoroutine(CallAPI());
     }
@@ -30,9 +34,12 @@ public class PvpGetAccessCode : MonoBehaviour
         }
 
         JSONNode APIinfo = JSON.Parse(APIRequest.downloadHandler.text);
-        accessCode = APIinfo["message"];
-        displayAccessCode.text = "Access code: " + accessCode;
-        enterAccessCode.gameObject.SetActive(true);
+        if (APIinfo["status_code"] == 200){
+            string accessCode = APIinfo["message"];
+            displayAccessCode.text = "Access code: " + accessCode;
+            enterAccessCode.gameObject.SetActive(true);
+        }
+
         
     }
 }

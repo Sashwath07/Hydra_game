@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PVP : MonoBehaviour
 {
     public static int WorldSelected;
     public static int SectionSelected;
     public static int LevelSelected;
+
+    public Button CreateGame;
+
     public void SelectWorld(int val){
         if (val == 0){
             Debug.Log("World 1");
@@ -46,5 +51,9 @@ public class PVP : MonoBehaviour
             Debug.Log("Level 3");    
             LevelSelected = 3;       
         }
+    }
+
+    public void OnSelectCreateGame(){
+        SceneManager.LoadScene("PVP Access Code");
     }
 }
