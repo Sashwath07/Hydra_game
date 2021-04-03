@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using SimpleJSON;
 using TMPro;
 
@@ -42,9 +43,26 @@ public class PvpJoinRoom : MonoBehaviour
         }
         if (APIinfo["status_code"] == 200){
             enterAccessCode.text = "Joining room...";
-            WorldSelect.worldSelected = APIinfo["message"]["World"];
-            SectionSelect.sectionSelected = APIinfo["message"]["Section"];
+            // WorldSelect.worldSelected = APIinfo["message"]["World"];
+            if (APIinfo["message"]["Phase"] == "Topic 1"){
+                WorldSelect.worldSelected = 1;
+            }
+            if (APIinfo["message"]["Phase"] == "Topic 2"){
+                WorldSelect.worldSelected = 2;
+            }
+
+            // SectionSelect.sectionSelected = APIinfo["message"]["Section"];
+            if (APIinfo["message"]["Section"] == "Section 1"){
+                SectionSelect.sectionSelected = 1;
+            }
+            if (APIinfo["message"]["Section"] == "Section 2"){
+                SectionSelect.sectionSelected = 2;
+            }
+            if (APIinfo["message"]["Section"] == "Section 3"){
+                SectionSelect.sectionSelected = 3;
+            }
             LevelSelect.levelSelected = APIinfo["message"]["Level"];
+            SceneManager.LoadScene("Quiz");
             //retrieve world section level info
             //load selected world section level
         }
