@@ -56,4 +56,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Quiz Ended.unity
     guid: 56b3b426632dbe3489f9cba68db50c1a
+  - enabled: 1
+    path: Assets/Scenes/PVP Access Code.unity
+    guid: 1047eab7b677090488171c436247ad38
+  - enabled: 1
+    path: Assets/Scenes/PVP Create Room.unity
+    guid: c6c69e9fd49ae444c89c5530f63fc9b2
+  - enabled: 1
+    path: Assets/Scenes/PVP Join Room.unity
+    guid: b35b1b78228f99c458de0a07ae578706
   m_configObjects: {}
