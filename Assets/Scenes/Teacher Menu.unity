@@ -949,11 +949,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1966242617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ad9e2d26b842e34fa41fc0975f5ac4d, type: 3}
+  m_Script: {fileID: 11500000, guid: ad76573c9eb94454eb5d532c3f6aa7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReportGeneration: {fileID: 2015236810}
-  LeaderboardButton: {fileID: 0}
+  ReportGenerationButton: {fileID: 2015236810}
   LogoutButton: {fileID: 83313429}
 --- !u!1 &2015236808
 GameObject:

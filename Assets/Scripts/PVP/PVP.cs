@@ -10,6 +10,8 @@ public class PVP : MonoBehaviour
     public static int SectionSelected = 0;
     public static int LevelSelected = 0;
 
+    public static bool isPvp;
+
     public Button CreateGame;
 
     void Start(){

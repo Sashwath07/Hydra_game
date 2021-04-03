@@ -31,7 +31,7 @@ public class PvpGetAccessCode : MonoBehaviour
 
         yield return APIRequest.SendWebRequest();
 
-        if (APIRequest.isNetworkError || APIRequest.isHttpError){
+        if (APIRequest.result == UnityWebRequest.Result.ConnectionError || APIRequest.result == UnityWebRequest.Result.ProtocolError){
             Debug.LogError(APIRequest.error);
             yield break;
         }
