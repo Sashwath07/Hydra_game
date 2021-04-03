@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     public Button StoryModeButton;
     public Button PVPButton;
     public Button LeaderboardButton;
+
+    public Button AssignmentButton;
     public Button LogoutButton;
 
     public Text UsernameText;
@@ -79,6 +81,10 @@ public class MainMenu : MonoBehaviour
 
         LeaderboardButton.onClick.AddListener(() => {
             SceneManager.LoadScene("Leaderboard", LoadSceneMode.Single);
+        });
+
+        AssignmentButton.onClick.AddListener(() => {
+            SceneManager.LoadScene("Assignment", LoadSceneMode.Single);
         });
 
         LogoutButton.onClick.AddListener(() => {

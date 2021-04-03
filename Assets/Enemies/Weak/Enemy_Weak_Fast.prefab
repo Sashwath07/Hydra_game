@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 7627146991808856151}
   - component: {fileID: 1930294505225182229}
   m_Layer: 0
-  m_Name: Enemy_Fast
+  m_Name: Enemy_Weak_Fast
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2418411c2ce517b44b7ec9cbbcc66574, type: 2}
+  - {fileID: 2100000, guid: 75d168fb2eca99947b644168cd359746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -182,9 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a64e3c15f2846b449830ef5677b8006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 20
   startHealth: 20
-  value: 25
+  value: 10
   deathEffect: {fileID: 776386596307587599, guid: 969ebc6bd76c21b4ca852a138984ab7e,
     type: 3}
   healthBar: {fileID: 4655240497848140866}

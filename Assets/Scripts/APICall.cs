@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//This script is a template on how to perform API calls
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -10,7 +12,7 @@ public class APICall : MonoBehaviour
 {
     public TMP_Text APIresult;
 
-    private readonly string APIUrl = "https://223.25.69.254:10001/";
+    private readonly string APIUrl = "https://223.25.69.254:10002/";
 
     public void SelectUpdate(){
         
@@ -30,8 +32,10 @@ public class APICall : MonoBehaviour
         }
 
         JSONNode APIinfo = JSON.Parse(APIRequest.downloadHandler.text);
-        string APIinfoWorking = APIinfo["Working"];
+        string APIinfoWorking = APIinfo["message"];
 
         APIresult.text = APIinfoWorking;
     }
+
+    
 }

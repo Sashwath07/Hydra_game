@@ -136,7 +136,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: a36c6f5f72983d14491cf9fd18c153e5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   startHealth: 100
-  value: 50
+  value: 20
   deathEffect: {fileID: 776386596307587599, guid: 92467d77b9ae248409b6d16e1b7ed253,
     type: 3}
   healthBar: {fileID: 4655240497848140866}

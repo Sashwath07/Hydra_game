@@ -9,53 +9,63 @@ public class WaveSpawner : MonoBehaviour
 
     public Wave[] waves;
 
-    public Transform enemyPrefab;
+    //public Transform enemyPrefab;
     public Transform spawnPoint;
     public float timeBetweenWaves = 5f;
     private float countdown = 2f;
-    public Text waveCountdownText; 
+    public Text waveCountdownText;
     private int waveIndex = 0;
+    private bool isWaveDone = true;
 
-    void Update (){
+    void Update()
+    {
 
-        if(EnemiesAlive>0)
+        if (countdown <= 0f)
         {
-            return;
-        }
-
-        if (countdown <= 0f){
+            isWaveDone = false;
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
             return;
         }
 
+        if (!isWaveDone)
+        {
+            return;
+        }
         countdown -= Time.deltaTime;
 
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
 
         waveCountdownText.text = string.Format("{0:00.00}", countdown);
     }
-    IEnumerator SpawnWave(){
+    IEnumerator SpawnWave()
+    {
         PlayerStats.Rounds++;
 
         Wave wave = waves[waveIndex];
 
-        for (int i = 0; i < wave.count; i++)
+        for (int i = 0; i < wave.count.Length; i++)
         {
-            SpawnEnemy(wave.enemy);
-            yield return new WaitForSeconds(1f / wave.rate);
+            for (int j = 0; j < wave.count[i]; j++)
+            {
+                SpawnEnemy(wave.enemy[i]);
+                yield return new WaitForSeconds(1f / wave.rate);
+            }
         }
-
+        isWaveDone = true;
         waveIndex++;
 
         if (waveIndex == waves.Length)
         {
             Debug.Log("Level Completed!");
+            GameManager.LevelCompleted = true;
             this.enabled = false;
+
         }
 
     }
-    void SpawnEnemy(GameObject enemy){
+    void SpawnEnemy(GameObject enemy)
+    {
         Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
         EnemiesAlive++;
     }

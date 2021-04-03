@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using SimpleJSON;
 using TMPro;
@@ -8,8 +9,6 @@ using System.IO;
 
 public class LeaderboardGenerator : MonoBehaviour
 {
-    public string playerName = "David"; //placeholder, have to access from elsewhere
-
     public TMP_Text firstPlace;
     public TMP_Text secondPlace;
     public TMP_Text thirdPlace;
@@ -22,21 +21,32 @@ public class LeaderboardGenerator : MonoBehaviour
     public TMP_Text tenthPlace;
     public TMP_Text PlayerPosition;
 
-    private static string Leaderboard = File.ReadAllText ("Assets/Scripts/Leaderboard/LeaderboardSample.json"); 
-    JSONNode file = JSON.Parse(Leaderboard);
+    // private static string playerName = Login.username;
+    private static string playerName = "SHAFIQ002";
+    private static string baseUrl = "https://223.25.69.254:10002/get_leaderboard/username=";
+    private string Url = baseUrl + playerName;
 
     void Start()
     {
-
-        GenerateLeaderboard();
+        StartCoroutine(GenerateLeaderboard());
     }
 
-    void GenerateLeaderboard(){
+    IEnumerator GenerateLeaderboard(){
         int playerIndex = 0;
+        UnityWebRequest APIRequest = UnityWebRequest.Get(Url);
+        APIRequest.certificateHandler = new WebRequestCert();   //force accept certificate
 
+        yield return APIRequest.SendWebRequest();
+
+        if (APIRequest.isNetworkError || APIRequest.isHttpError){
+            Debug.LogError(APIRequest.error);
+            yield break;
+        }
+
+        JSONNode file = JSON.Parse(APIRequest.downloadHandler.text);
         for (int i = 0; i < file["message"].Count; i++)
         {
-            if ((string)file["message"][i]["Username"] == playerName){
+            if ((string)file["message"][i]["Username"] == playerName.ToUpper()){
 
                 playerIndex = i;
                 break;
