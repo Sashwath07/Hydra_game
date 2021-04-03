@@ -1,21 +1,19 @@
-﻿//This script is a template on how to perform API calls
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using SimpleJSON;
 using TMPro;
+using SimpleJSON;
 
-
-public class APICall : MonoBehaviour
+public class PvpGetAccessCode : MonoBehaviour
 {
-    public TMP_Text APIresult;
+    public TMP_Text displayAccessCode;
+    public TMP_Text enterAccessCode;
 
-    private readonly string APIUrl = "https://223.25.69.254:10002/";
+    private static string accessCode;
+    private string APIUrl = "https://223.25.69.254:10002/create_pvp_room";
 
-    public void SelectUpdate(){
-        
+    void Start(){
         StartCoroutine(CallAPI());
     }
 
@@ -32,10 +30,9 @@ public class APICall : MonoBehaviour
         }
 
         JSONNode APIinfo = JSON.Parse(APIRequest.downloadHandler.text);
-        string APIinfoWorking = APIinfo["message"];
-
-        APIresult.text = APIinfoWorking;
+        accessCode = APIinfo["message"];
+        displayAccessCode.text = "Access code: " + accessCode;
+        enterAccessCode.gameObject.SetActive(true);
+        
     }
-
-    
 }

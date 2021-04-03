@@ -1,10 +1,11 @@
-﻿//This script fetches the question and checks if it is correct
+﻿//This script fetches questions from database and manages the quiz component
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 using SimpleJSON;
 using TMPro;
 using System.IO;
@@ -25,113 +26,76 @@ public class QuestionGenerator : MonoBehaviour
 
     public Button nextQuestion;
 
+    private int numberOfQuestions = QuizHandler.numOfQns;
 
-    
-    private static string SampleQuestions = File.ReadAllText ("Assets/Scripts/Quiz/SampleQuestions.json"); 
-    JSONNode file = JSON.Parse(SampleQuestions);
+    IList<Question> QuestionList = new List<Question>(){
+        new Question() { },
+        new Question() { },
+        new Question() { },
+        new Question() { }
+    };
+    private static string worldSelected = WorldSelect.worldSelected.ToString();
+    private static string sectionSelected = SectionSelect.sectionSelected.ToString();
+    private static string levelSelected = LevelSelect.levelSelected.ToString();
+    // private static string username = Login.username;
+    // private static string worldSelected = "1";
+    // private static string sectionSelected = "1";
+    // private static string levelSelected = "1";
+    private static string username = "SHAFIQ002";
+    private static string baseUrl = "https://223.25.69.254:10002/retrieve_questions/world=";
+    private string Url = baseUrl + worldSelected + "&section=" + sectionSelected + "&level=" + levelSelected + "&username=" + username;
 
-    private int questionNo; //current question
 
-    void Start()
-    {
-        GenerateQuestion(QuizHandler.numOfQns-1);
-        QuizHandler.numOfQns--;
-        ResetButton();
-        // GenerateQuestion(0);
+    void Start(){
+        displayQuestion.text = "Loading Question...";
+        StartCoroutine(CallAPI());
     }
 
     public void OnNextQuestion(){
-        if (QuizHandler.numOfQns > 0){
-            Start();
+        if (numberOfQuestions-1 > 0){
+            numberOfQuestions--;
+            SetQuestions(numberOfQuestions-1);
+            ResetButton();
         } else {
             SceneManager.LoadScene("Quiz Ended");
         }
         
     }
 
-    void GenerateQuestion(int questionNumber){
+   IEnumerator CallAPI(){
         
-        string question = file["message"][questionNumber]["Question"];
+        UnityWebRequest APIRequest = UnityWebRequest.Get(Url);
+        APIRequest.certificateHandler = new WebRequestCert();   //force accept certificate
 
-        string answer1 = file["message"][questionNumber]["Option1"];
-        string answer2 = file["message"][questionNumber]["Option2"];
-        string answer3 = file["message"][questionNumber]["Option3"];
-        string answer4 = file["message"][questionNumber]["Option4"];
+        yield return APIRequest.SendWebRequest();
 
-        displayQuestion.text = question;
-        questionNo = questionNumber;
-        displayAnswer1.text = answer1;
-        displayAnswer2.text = answer2;
-        displayAnswer3.text = answer3;
-        displayAnswer4.text = answer4;     
-
-        
-    }
-
-    bool CheckAnswer(int selectedAnswer){
-        int correctAnswer = file["message"][questionNo]["Answer"];
-        
-        if (correctAnswer == selectedAnswer){
-            QuizHandler.Score += 20;
-            displayScore.text = "Score: " + QuizHandler.Score.ToString();
-            return true;
-
-        } else{
-            return false;
-        }
-    }
-
-    public void OnSelectAnswer1(){
-
-        if (CheckAnswer(1)){
-            answerButton1.GetComponent<Image>().color = Color.green;
-        } else{
-            answerButton1.GetComponent<Image>().color = Color.red;
+        if (APIRequest.isNetworkError || APIRequest.isHttpError){
+            Debug.LogError(APIRequest.error);
+            yield break;
         }
 
-        answerButton2.interactable = false;
-        answerButton3.interactable = false;
-        answerButton4.interactable = false;
-    }
+        JSONNode file = JSON.Parse(APIRequest.downloadHandler.text);
 
-    public void OnSelectAnswer2(){
-
-        if (CheckAnswer(2)){
-            answerButton2.GetComponent<Image>().color = Color.green;
-        } else {
-            answerButton2.GetComponent<Image>().color = Color.red;
+        for (int i = 0; i < QuestionList.Count; i++)
+        {
+            QuestionList[i].question = file["message"][i]["Question"];
+            QuestionList[i].answer1 = file["message"][i]["Option1"];
+            QuestionList[i].answer2 = file["message"][i]["Option2"];
+            QuestionList[i].answer3 = file["message"][i]["Option3"];
+            QuestionList[i].answer4 = file["message"][i]["Option4"];
+            QuestionList[i].correctAnswer = file["message"][i]["Answer"];
         }
+        SetQuestions(3);
 
-        answerButton1.interactable = false;
-        answerButton3.interactable = false;
-        answerButton4.interactable = false;
-    }
+   }
 
-    public void OnSelectAnswer3(){
-
-        if (CheckAnswer(3)){
-            answerButton3.GetComponent<Image>().color = Color.green;
-        } else {
-            answerButton3.GetComponent<Image>().color = Color.red;
-        }
-
-        answerButton1.interactable = false;
-        answerButton2.interactable = false;
-        answerButton4.interactable = false;
-    }
-
-    public void OnSelectAnswer4(){
-
-        if (CheckAnswer(4)){
-            answerButton4.GetComponent<Image>().color = Color.green;
-        } else{
-            answerButton4.GetComponent<Image>().color = Color.red;
-        }
-
-        answerButton1.interactable = false;
-        answerButton2.interactable = false;
-        answerButton3.interactable = false;
-    }
+   void SetQuestions(int questionNumber){
+        displayQuestion.text = QuestionList[questionNumber].question;
+        displayAnswer1.text = QuestionList[questionNumber].answer1;
+        displayAnswer2.text = QuestionList[questionNumber].answer2;
+        displayAnswer3.text = QuestionList[questionNumber].answer3;
+        displayAnswer4.text = QuestionList[questionNumber].answer4;  
+   }
 
     void ResetButton(){
         answerButton1.GetComponent<Image>().color = Color.white;
@@ -145,7 +109,81 @@ public class QuestionGenerator : MonoBehaviour
         answerButton4.interactable = true;
     }
 
+    void SetButtonFalse(){
+        answerButton1.interactable = false;
+        answerButton2.interactable = false;
+        answerButton3.interactable = false;
+        answerButton4.interactable = false;
+    }
+
+    public void OnSelectAnswer1(){
+
+        if (CheckAnswer(1)){
+            answerButton1.GetComponent<Image>().color = Color.green;
+        } else{
+            answerButton1.GetComponent<Image>().color = Color.red;
+        }
+
+        SetButtonFalse();
+    }
+
+    public void OnSelectAnswer2(){
+
+        if (CheckAnswer(2)){
+            answerButton2.GetComponent<Image>().color = Color.green;
+        } else {
+            answerButton2.GetComponent<Image>().color = Color.red;
+        }
+
+        SetButtonFalse();
+    }
+
+    public void OnSelectAnswer3(){
+
+        if (CheckAnswer(3)){
+            answerButton3.GetComponent<Image>().color = Color.green;
+        } else {
+            answerButton3.GetComponent<Image>().color = Color.red;
+        }
+
+        SetButtonFalse();
+    }
+
+    public void OnSelectAnswer4(){
+
+        if (CheckAnswer(4)){
+            answerButton4.GetComponent<Image>().color = Color.green;
+        } else{
+            answerButton4.GetComponent<Image>().color = Color.red;
+        }
+
+        SetButtonFalse();
+    }
     
+    bool CheckAnswer(int selectedAnswer){
+        int correctAnswer = QuestionList[numberOfQuestions-1].correctAnswer;
+        
+        if (correctAnswer == selectedAnswer){
+            QuizHandler.Score += 1;
+            displayScore.text = "Score: " + QuizHandler.Score.ToString();
+            return true;
+
+        } else{
+            return false;
+    }
 
     
+    
+}
+
+
+public class Question
+{
+    public string question {get; set; }
+    public string answer1 {get; set; }
+    public string answer2 {get; set; }
+    public string answer3 {get; set; }
+    public string answer4 {get; set; }
+    public int correctAnswer {get; set; }
+}
 }
