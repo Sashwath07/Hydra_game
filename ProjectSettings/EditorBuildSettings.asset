@@ -65,4 +65,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PVP Join Room.unity
     guid: b35b1b78228f99c458de0a07ae578706
+  - enabled: 1
+    path: Assets/Scenes/PVP Select.unity
+    guid: d0fb122d701cab04da7fe3b26f462654
   m_configObjects: {}

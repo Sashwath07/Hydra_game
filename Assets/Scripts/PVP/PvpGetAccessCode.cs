@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using SimpleJSON;
 
@@ -41,8 +43,12 @@ public class PvpGetAccessCode : MonoBehaviour
             enterAccessCode.gameObject.SetActive(true);
         }
         Debug.Log(APIUrl);
-        Debug.Log(APIinfo["message"]);
-
-        
+        Debug.Log(APIinfo["message"]);        
     }
+
+    public void OnSelectMenu(){
+        SceneManager.LoadScene("PVP Select");
+    }
+
+
 }

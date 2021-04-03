@@ -76,7 +76,7 @@ public class MainMenu : MonoBehaviour
         });
 
         PVPButton.onClick.AddListener(() => {
-            //add pvp scene
+            SceneManager.LoadScene("PVP Select", LoadSceneMode.Single);
         });
 
         LeaderboardButton.onClick.AddListener(() => {

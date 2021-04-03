@@ -14,8 +14,8 @@ public class PvpJoinRoom : MonoBehaviour
     public Button Enter;
 
     private static string accessCode;
-    // private static string username = Login.username;     //use this later
-    private static string username = "SHAFIQ002";
+    private static string username = Login.username.ToUpper();     //use this later
+    // private static string username = "SHAFIQ002";
     private static string baseUrl = "https://223.25.69.254:10002/enter_pvp_room/username=";
     // private static string Url = "https://223.25.69.254:10002/enter_pvp_room/username=<username>&access_code=<access_code>";
     public void OnJoinRoom(){
@@ -63,8 +63,7 @@ public class PvpJoinRoom : MonoBehaviour
             }
             LevelSelect.levelSelected = APIinfo["message"]["Level"];
             SceneManager.LoadScene("Quiz");
-            //retrieve world section level info
-            //load selected world section level
+
         }
     }
 }
