@@ -16,7 +16,7 @@ public class PvpGetAccessCode : MonoBehaviour
 
     // private string Url = "https://223.25.69.254:10002/create_pvp_room";
     private static string baseUrl = "https://223.25.69.254:10002/create_pvp_room/world=";
-    string url = "https://223.25.69.254:10002/create_pvp_room/world=1&section=1&level=1";
+    // string url = "https://223.25.69.254:10002/create_pvp_room/world=1&section=1&level=1";
     private static string APIUrl = baseUrl + WorldSelected + "&section=" + SectionSelected + "&level=" + LevelSelected;
     void Start(){
         StartCoroutine(CallAPI());

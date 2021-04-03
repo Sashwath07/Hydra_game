@@ -13,17 +13,18 @@ public class PvpJoinRoom : MonoBehaviour
     public Button Enter;
 
     private static string accessCode;
-    private static string username = Login.username;
+    // private static string username = Login.username;     //use this later
+    private static string username = "SHAFIQ002";
     private static string baseUrl = "https://223.25.69.254:10002/enter_pvp_room/username=";
     // private static string Url = "https://223.25.69.254:10002/enter_pvp_room/username=<username>&access_code=<access_code>";
-    private string APIUrl = baseUrl + username + "&access_code=" + accessCode;
-
     public void OnJoinRoom(){
+        accessCode = inputField.text;
         StartCoroutine(CallAPI());
     }
 
     IEnumerator CallAPI(){
-        
+        string APIUrl = baseUrl + username + "&access_code=" + accessCode;
+
         UnityWebRequest APIRequest = UnityWebRequest.Get(APIUrl);
         APIRequest.certificateHandler = new WebRequestCert();   //force accept certificate
 
@@ -41,6 +42,9 @@ public class PvpJoinRoom : MonoBehaviour
         }
         if (APIinfo["status_code"] == 200){
             enterAccessCode.text = "Joining room...";
+            WorldSelect.worldSelected = APIinfo["message"]["World"];
+            SectionSelect.sectionSelected = APIinfo["message"]["Section"];
+            LevelSelect.levelSelected = APIinfo["message"]["Level"];
             //retrieve world section level info
             //load selected world section level
         }
