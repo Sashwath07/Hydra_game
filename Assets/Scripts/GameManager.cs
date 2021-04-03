@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
 
 
-        if(int.Parse(APIInfoCode)>200 && int.Parse(APIInfoCode) <= 299)
+        if(int.Parse(APIInfoCode)>=200 && int.Parse(APIInfoCode) <= 299)
         {
             Debug.Log("Successful update: " + APIInfoMessage + "|" + APIInfoCode);
             yield break;
