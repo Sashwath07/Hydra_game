@@ -58,7 +58,9 @@ public class WaveSpawner : MonoBehaviour
         if (waveIndex == waves.Length)
         {
             Debug.Log("Level Completed!");
+            GameManager.LevelCompleted = true;
             this.enabled = false;
+
         }
 
     }
