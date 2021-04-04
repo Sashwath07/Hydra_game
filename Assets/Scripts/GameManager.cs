@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using SimpleJSON;
 
 public class GameManager : MonoBehaviour
@@ -47,10 +48,15 @@ public class GameManager : MonoBehaviour
     void EndGame(){
         GameIsOver = true;
         
-        gameOverUI.SetActive(true);
 
-        string fullScoreAPIUrl = scoreAPIURL + "username=" + this.username + "&points=" + PlayerStats.GameScore.ToString() + "&world=" + this.currentWorld + "&section=" + this.section + "&level=" + currentLevel;
-        StartCoroutine(UpdateScore(fullScoreAPIUrl));
+        if (!PVP.isPvp){
+            gameOverUI.SetActive(true);
+            string fullScoreAPIUrl = scoreAPIURL + "username=" + this.username + "&points=" + PlayerStats.GameScore.ToString() + "&world=" + this.currentWorld + "&section=" + this.section + "&level=" + currentLevel;
+            StartCoroutine(UpdateScore(fullScoreAPIUrl));
+        } else{
+            SceneManager.LoadScene("PVP Game Ended");
+        }
+        
     }
 
     IEnumerator UpdateScore(string URL)
@@ -60,7 +66,7 @@ public class GameManager : MonoBehaviour
 
         yield return APIRequest.SendWebRequest();
 
-        if (APIRequest.isNetworkError || APIRequest.isHttpError)
+        if (APIRequest.result == UnityWebRequest.Result.ConnectionError || APIRequest.result == UnityWebRequest.Result.ProtocolError)
         {
             Debug.LogError(APIRequest.error);
             Debug.LogError("Error at: " + URL);

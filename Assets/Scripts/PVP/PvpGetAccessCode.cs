@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using SimpleJSON;
 
@@ -29,7 +31,7 @@ public class PvpGetAccessCode : MonoBehaviour
 
         yield return APIRequest.SendWebRequest();
 
-        if (APIRequest.isNetworkError || APIRequest.isHttpError){
+        if (APIRequest.result == UnityWebRequest.Result.ConnectionError || APIRequest.result == UnityWebRequest.Result.ProtocolError){
             Debug.LogError(APIRequest.error);
             yield break;
         }
@@ -41,8 +43,12 @@ public class PvpGetAccessCode : MonoBehaviour
             enterAccessCode.gameObject.SetActive(true);
         }
         Debug.Log(APIUrl);
-        Debug.Log(APIinfo["message"]);
-
-        
+        Debug.Log(APIinfo["message"]);        
     }
+
+    public void OnSelectMenu(){
+        SceneManager.LoadScene("PVP Select");
+    }
+
+
 }

@@ -21,8 +21,7 @@ public class LeaderboardGenerator : MonoBehaviour
     public TMP_Text tenthPlace;
     public TMP_Text PlayerPosition;
 
-    // private static string playerName = Login.username;
-    private static string playerName = "SHAFIQ002";
+    private static string playerName = Login.username;
     private static string baseUrl = "https://223.25.69.254:10002/get_leaderboard/username=";
     private string Url = baseUrl + playerName;
 
@@ -38,7 +37,7 @@ public class LeaderboardGenerator : MonoBehaviour
 
         yield return APIRequest.SendWebRequest();
 
-        if (APIRequest.isNetworkError || APIRequest.isHttpError){
+        if (APIRequest.result == UnityWebRequest.Result.ConnectionError || APIRequest.result == UnityWebRequest.Result.ProtocolError){
             Debug.LogError(APIRequest.error);
             yield break;
         }
