@@ -40,6 +40,10 @@ public class Register : MonoBehaviour
             RegisterImage.gameObject.SetActive(false);
             CharacterSelection.gameObject.SetActive(true);
         }
+        else if (APIinfoMessage == "Sorry, that username already exists. Please try a different one.") {
+            RegisterFeedback.text = "Username already exist!";
+            RegisterFeedback.gameObject.SetActive(true);
+        }
         else {
             Debug.Log("Error at Register");
             Debug.Log(URL);

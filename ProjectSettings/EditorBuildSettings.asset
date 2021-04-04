@@ -47,7 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Assignment.unity
     guid: c2ddb6b5798dbc34e9075b2ec394279e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Report Generation.unity
     guid: 43c8f7fb453469f4eac4869264b111af
   - enabled: 1
