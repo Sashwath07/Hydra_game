@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
         if (!PVP.isPvp){
             gameOverUI.SetActive(true);
-            string fullScoreAPIUrl = scoreAPIURL + "username=" + this.username + "&points=" + PlayerStats.GameScore.ToString() + "&world=" + this.currentWorld + "&section=" + this.section + "&level=" + currentLevel;
+            string fullScoreAPIUrl = scoreAPIURL + "username=" + this.username + "&points=" + PlayerStats.GameScore.ToString() + "&world=" + this.currentWorld + "&section=" + this.currentSection + "&level=" + currentLevel;
             StartCoroutine(UpdateScore(fullScoreAPIUrl));
         } else{
             SceneManager.LoadScene("PVP Game Ended");
