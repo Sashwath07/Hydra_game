@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
         GameIsOver = true;
         
 
-
         if (!PVP.isPvp){
             gameOverUI.SetActive(true);
             string fullScoreAPIUrl = scoreAPIURL + "username=" + this.username + "&points=" + PlayerStats.GameScore.ToString() + "&world=" + this.currentWorld + "&section=" + this.currentSection + "&level=" + currentLevel;
