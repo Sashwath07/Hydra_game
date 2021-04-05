@@ -29,6 +29,8 @@ public class Register : MonoBehaviour
 
         if (APIRequest.result == UnityWebRequest.Result.ConnectionError || APIRequest.result == UnityWebRequest.Result.ProtocolError){
             Debug.LogError(APIRequest.error);
+            RegisterFeedback.text = "Server is down. Please try again later.";
+            RegisterFeedback.gameObject.SetActive(true);
             yield break;
         }
 

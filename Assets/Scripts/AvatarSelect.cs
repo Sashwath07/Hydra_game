@@ -13,6 +13,7 @@ public class AvatarSelect : MonoBehaviour
     public Button Character2;
     public Button Character3;
     public Button Character4;
+    public Text Feedback;
 
     
     public string avatarAPIURL = "https://223.25.69.254:10002/create_ingame_account/";
@@ -27,6 +28,8 @@ public class AvatarSelect : MonoBehaviour
 
         if (APIRequest.result == UnityWebRequest.Result.ConnectionError || APIRequest.result == UnityWebRequest.Result.ProtocolError){
             Debug.LogError(APIRequest.error);
+            Feedback.text = "Server is down. Please try again later.";
+            Feedback.gameObject.SetActive(true);
             yield break;
         }
 
