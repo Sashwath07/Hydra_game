@@ -11,6 +11,7 @@ public class AccessCodePanel : MonoBehaviour
 {
     // Start is called before the first frame update
     public Button SubmitAccessCode;
+    public Button BacktoMainMenu;
     public Button EnterAssignment;
     public GameObject AssignmentFirstPanel;
     public GameObject AssignmentPanel;
@@ -74,6 +75,10 @@ public class AccessCodePanel : MonoBehaviour
         });
 
         ReturnMainMenu.onClick.AddListener(() => {
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+        });
+
+        BacktoMainMenu.onClick.AddListener(() => {
             SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
         });
 
