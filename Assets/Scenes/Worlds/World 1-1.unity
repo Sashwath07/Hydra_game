@@ -5319,7 +5319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &392943466
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5357,6 +5357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundsText: {fileID: 126065121}
+  gameOverText: {fileID: 1639193750}
 --- !u!1001 &395623584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7858,7 +7859,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rounds survived
+  m_Text: 'Rounds survived : Score'
 --- !u!222 &629317067
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7964,7 +7965,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &639750717
 Canvas:
   m_ObjectHideFlags: 0

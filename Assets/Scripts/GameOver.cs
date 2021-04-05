@@ -7,9 +7,21 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     public Text roundsText;
+    public Text gameOverText;
 
     void OnEnable(){
-        roundsText.text = PlayerStats.Rounds.ToString();
+        SetMessage();
+        roundsText.text = PlayerStats.Rounds.ToString() + ":" +  PlayerStats.GameScore;
+    }
+
+    void SetMessage()
+    {
+        if (GameManager.LevelCompleted) {
+            gameOverText.text = "Level Completed!";
+        }
+        else {
+            gameOverText.text = "Game Over!";
+        }
     }
 
     public void Retry(){
