@@ -28,6 +28,8 @@ public class Login : MonoBehaviour
 
         if (APIRequest.result == UnityWebRequest.Result.ConnectionError || APIRequest.result == UnityWebRequest.Result.ProtocolError){
             Debug.LogError(APIRequest.error);
+            LoginFeedback.text = "Server is down. Please try again later.";
+            LoginFeedback.gameObject.SetActive(true);
             yield break;
         }
 
