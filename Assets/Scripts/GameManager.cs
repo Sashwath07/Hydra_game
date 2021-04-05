@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using SimpleJSON;
 
 public class GameManager : MonoBehaviour
@@ -48,10 +49,16 @@ public class GameManager : MonoBehaviour
     void EndGame(){
         GameIsOver = true;
         
-        gameOverUI.SetActive(true);
 
-        string fullScoreAPIUrl = scoreAPIURL + "username=" + this.username + "&points=" + PlayerStats.GameScore.ToString() + "&world=" + this.currentWorld + "&section=" + this.currentSection + "&level=" + currentLevel;
-        StartCoroutine(UpdateScore(fullScoreAPIUrl));
+
+        if (!PVP.isPvp){
+            gameOverUI.SetActive(true);
+            string fullScoreAPIUrl = scoreAPIURL + "username=" + this.username + "&points=" + PlayerStats.GameScore.ToString() + "&world=" + this.currentWorld + "&section=" + this.section + "&level=" + currentLevel;
+            StartCoroutine(UpdateScore(fullScoreAPIUrl));
+        } else{
+            SceneManager.LoadScene("PVP Game Ended");
+        }
+        
     }
 
     IEnumerator UpdateScore(string URL)
@@ -61,7 +68,7 @@ public class GameManager : MonoBehaviour
 
         yield return APIRequest.SendWebRequest();
 
-        if (APIRequest.isNetworkError || APIRequest.isHttpError)
+        if (APIRequest.result == UnityWebRequest.Result.ConnectionError || APIRequest.result == UnityWebRequest.Result.ProtocolError)
         {
             Debug.LogError(APIRequest.error);
             Debug.LogError("Error at: " + URL);
@@ -72,7 +79,10 @@ public class GameManager : MonoBehaviour
         string APIInfoMessage = APIinfo["message"];
         string APIInfoCode = APIinfo["status_code"];
 
-        if(int.Parse(APIInfoCode)>200 && int.Parse(APIInfoCode) <= 299)
+
+
+
+        if(int.Parse(APIInfoCode)>=200 && int.Parse(APIInfoCode) <= 299)
         {
             Debug.Log("Successful update: " + APIInfoMessage + "|" + APIInfoCode);
             yield break;

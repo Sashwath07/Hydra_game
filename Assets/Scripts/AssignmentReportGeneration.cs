@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using SimpleJSON;
 
-public class ReportGeneration : MonoBehaviour
+public class AssignmentReportGeneration : MonoBehaviour
 {
-    public List<ReportGenerationClass> ACList = new List<ReportGenerationClass>();
+    public List<AssignmentReportClass> ACList = new List<AssignmentReportClass>();
     public Button BackButton;
     public TMP_Dropdown AssignmentAccessCodes;
     public Text StartDateText;
@@ -40,7 +40,7 @@ public class ReportGeneration : MonoBehaviour
         // fills up ACList with all current exisiting access codes 
         if(APIstatus == 200){
             for(int i =0; i<APIinfo["message"].Count; i++){
-                ReportGenerationClass tempAC = new ReportGenerationClass();
+                AssignmentReportClass tempAC = new AssignmentReportClass();
                 tempAC.AccessCode = APIinfo["message"][i]["AccessCode"];
                 tempAC.AverageScore = APIinfo["message"][i]["AverageScore"];
                 tempAC.StandardDeviation = APIinfo["message"][i]["StandardDeviation"];
@@ -59,7 +59,7 @@ public class ReportGeneration : MonoBehaviour
     // Fills dropdown with the latest 5 access codes
     public void FillDropdown(){
         int j =0;
-        foreach(ReportGenerationClass ac in ACList){
+        foreach(AssignmentReportClass ac in ACList){
             // create another condition to account for ACList less than 5 to prevent index errors
             if (j==5){break;}
             AssignmentAccessCodes.options.Add(new TMP_Dropdown.OptionData(){text=ac.AccessCode.ToString()});
@@ -89,7 +89,7 @@ public class ReportGeneration : MonoBehaviour
 }
 
 [System.Serializable]
-public class ReportGenerationClass{
+public class AssignmentReportClass{
     public int AccessCode;
     public float AverageScore;
     public float StandardDeviation;

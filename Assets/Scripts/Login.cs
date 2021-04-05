@@ -26,8 +26,10 @@ public class Login : MonoBehaviour
 
         yield return APIRequest.SendWebRequest();
 
-        if (APIRequest.isNetworkError || APIRequest.isHttpError){
+        if (APIRequest.result == UnityWebRequest.Result.ConnectionError || APIRequest.result == UnityWebRequest.Result.ProtocolError){
             Debug.LogError(APIRequest.error);
+            LoginFeedback.text = "Server is down. Please try again later.";
+            LoginFeedback.gameObject.SetActive(true);
             yield break;
         }
 

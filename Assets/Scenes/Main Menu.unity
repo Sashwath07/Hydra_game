@@ -164,7 +164,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -345, y: 230}
+  m_AnchoredPosition: {x: -358, y: 210}
   m_SizeDelta: {x: -750, y: -420}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &49619333
@@ -661,6 +661,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1474,10 +1475,10 @@ MonoBehaviour:
   PointsText: {fileID: 416986636}
   WorldText: {fileID: 911410254}
   AvatarIcon: {fileID: 1611832417}
-  FireAvatar: {fileID: 21300000, guid: 51421721ec4bdef4298bb24d710f1d42, type: 3}
-  WaterAvatar: {fileID: 21300000, guid: 6b036e4cfcb53324da189659a3358404, type: 3}
-  WindAvatar: {fileID: 21300000, guid: af50dc4fa7b6d314895d0f8c79adb4a5, type: 3}
-  EarthAvatar: {fileID: 21300000, guid: ae7e1099aaff73c4b8e6e623e8c96910, type: 3}
+  FireAvatar: {fileID: 21300000, guid: 6fba432a44fbc494182042e1e99f9000, type: 3}
+  WaterAvatar: {fileID: 21300000, guid: d018ddbbdf7d60b4f8c94fddc8abb4d0, type: 3}
+  WindAvatar: {fileID: 21300000, guid: 6315fbed499495146afefbf8cc92f40d, type: 3}
+  EarthAvatar: {fileID: 21300000, guid: d6e2fefcc365f4c4ca6aa2c656611afc, type: 3}
 --- !u!1 &979625095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,8 +1746,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -110, y: 0}
-  m_SizeDelta: {x: -240, y: -60}
+  m_AnchoredPosition: {x: -107.5, y: 0}
+  m_SizeDelta: {x: -255, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1611832417
 MonoBehaviour:
@@ -1768,9 +1769,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 51421721ec4bdef4298bb24d710f1d42, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d6e2fefcc365f4c4ca6aa2c656611afc, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

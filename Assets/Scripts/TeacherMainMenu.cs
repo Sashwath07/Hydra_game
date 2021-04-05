@@ -7,19 +7,19 @@ using TMPro;
 
 public class TeacherMainMenu : MonoBehaviour
 {
+        public Button QuizReportButton;
         public Button ReportGenerationButton;
-        // public Button LeaderboardButton;
         public Button LogoutButton;
     
     void Start()
     {
-        ReportGenerationButton.onClick.AddListener(() => {
-            SceneManager.LoadScene("Report Generation", LoadSceneMode.Single);
+        QuizReportButton.onClick.AddListener(() => {
+            SceneManager.LoadScene("Quiz Report Generation", LoadSceneMode.Single);
         });
 
-        // LeaderboardButton.onClick.AddListener(() => {
-        //     SceneManager.LoadScene("Leaderboard", LoadSceneMode.Single);
-        // });
+        ReportGenerationButton.onClick.AddListener(() => {
+            SceneManager.LoadScene("Assignment Report", LoadSceneMode.Single);
+        });
 
         LogoutButton.onClick.AddListener(() => {
             SceneManager.LoadScene("Login Scene", LoadSceneMode.Single);
