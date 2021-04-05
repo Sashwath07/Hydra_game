@@ -18,7 +18,7 @@ public class TeacherMainMenu : MonoBehaviour
         });
 
         ReportGenerationButton.onClick.AddListener(() => {
-            SceneManager.LoadScene("Report Generation", LoadSceneMode.Single);
+            SceneManager.LoadScene("Assignment Report", LoadSceneMode.Single);
         });
 
         LogoutButton.onClick.AddListener(() => {
