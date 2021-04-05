@@ -4994,6 +4994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundsText: {fileID: 126065121}
+  gameOverText: {fileID: 1639193750}
 --- !u!1001 &395623584
 PrefabInstance:
   m_ObjectHideFlags: 0
