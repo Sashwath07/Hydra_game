@@ -14,10 +14,10 @@ public class PVPEnded : MonoBehaviour
 
     private static string username = Login.username;
     private static string accessCode = PvpJoinRoom.accessCode;
-    public static string score = PlayerStats.GameScore.ToString();
+    // public static string score = PlayerStats.GameScore.ToString();
 
     private static string endPvpBase = "https://223.25.69.254:10002/end_pvp/username=";
-    private static string endPvpUrl = endPvpBase + username + "&access_code=" + accessCode + "&score=" + score;
+    private static string endPvpUrl = endPvpBase + username + "&access_code=" + accessCode + "&score=" + PlayerStats.GameScore.ToString();
 
     private static string getWinnerBase = "https://223.25.69.254:10002/pvp_winner/access_code=";
     private static string getWinnerUrl = getWinnerBase + accessCode;
@@ -69,6 +69,8 @@ public class PVPEnded : MonoBehaviour
     }
 
     public void OnSelectMainMenu(){
+        PlayerStats.GameScore = 0;
+        QuizHandler.Score = 0;
         SceneManager.LoadScene("Main Menu");
     }
 }
