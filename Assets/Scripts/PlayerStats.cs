@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour
         //Money = startMoney;
         Money = (1+QuizHandler.Score) * 100 + startMoney;
         Lives = startLives;
-        GameScore = 1 + QuizHandler.Score;
+        GameScore = 0;
 
         Rounds = 0;
     }
