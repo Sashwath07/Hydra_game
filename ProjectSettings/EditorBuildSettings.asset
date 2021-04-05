@@ -60,8 +60,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Assignment.unity
     guid: c2ddb6b5798dbc34e9075b2ec394279e
   - enabled: 0
-    path: Assets/Scenes/Report Generation.unity
-    guid: 43c8f7fb453469f4eac4869264b111af
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Quiz.unity
     guid: bd65de6c232632a4daca1d9dc9a4d89a
@@ -83,4 +83,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PVP Game Ended.unity
     guid: e00bb0ae796b8a040838697ad483e795
+  - enabled: 1
+    path: Assets/Scenes/Quiz Report Generation.unity
+    guid: 0ccaed1a7c2aa56409478f35863cbfe3
   m_configObjects: {}
