@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         if (LevelCompleted && WaveSpawner.EnemiesAlive == 0)
         {
             EndGame();
+            return;
         }
 
         if (PlayerStats.Lives <= 0){
@@ -70,8 +71,6 @@ public class GameManager : MonoBehaviour
         JSONNode APIinfo = JSON.Parse(APIRequest.downloadHandler.text);
         string APIInfoMessage = APIinfo["message"];
         string APIInfoCode = APIinfo["status_code"];
-
-
 
         if(int.Parse(APIInfoCode)>200 && int.Parse(APIInfoCode) <= 299)
         {
