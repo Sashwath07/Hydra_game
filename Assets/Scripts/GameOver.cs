@@ -29,6 +29,7 @@ public class GameOver : MonoBehaviour
     }
 
     public void Menu(){
+        QuizHandler.Score = 0;
         SceneManager.LoadScene("Main Menu");
     }
 }
