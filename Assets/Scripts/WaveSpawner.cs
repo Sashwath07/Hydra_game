@@ -53,6 +53,7 @@ public class WaveSpawner : MonoBehaviour
             }
         }
         isWaveDone = true;
+        PlayerStats.Money += 100;
         waveIndex++;
 
         if (waveIndex == waves.Length)

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     private string currentWorld;
     private string currentLevel;
     private string username;
-    private string section; //what is this
+    private string currentSection;
 
     void Start(){
         GameIsOver = false;
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         //data to return to database
         currentWorld = WorldSelect.worldSelected.ToString();
         currentLevel = LevelSelect.levelSelected.ToString();
-        section = "1";
+        currentSection = SectionSelect.sectionSelected.ToString();
         username = Login.username;
     }
 
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         if (LevelCompleted && WaveSpawner.EnemiesAlive == 0)
         {
             EndGame();
+            return;
         }
 
         if (PlayerStats.Lives <= 0){
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
 
         if (!PVP.isPvp){
             gameOverUI.SetActive(true);
-            string fullScoreAPIUrl = scoreAPIURL + "username=" + this.username + "&points=" + PlayerStats.GameScore.ToString() + "&world=" + this.currentWorld + "&section=" + this.section + "&level=" + currentLevel;
+            string fullScoreAPIUrl = scoreAPIURL + "username=" + this.username + "&points=" + PlayerStats.GameScore.ToString() + "&world=" + this.currentWorld + "&section=" + this.currentSection + "&level=" + currentLevel;
             StartCoroutine(UpdateScore(fullScoreAPIUrl));
         } else{
             SceneManager.LoadScene("PVP Game Ended");
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
         JSONNode APIinfo = JSON.Parse(APIRequest.downloadHandler.text);
         string APIInfoMessage = APIinfo["message"];
         string APIInfoCode = APIinfo["status_code"];
+
 
 
 
