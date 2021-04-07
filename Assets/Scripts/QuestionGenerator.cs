@@ -47,6 +47,7 @@ public class QuestionGenerator : MonoBehaviour
 
 
     void Start(){
+        QuizHandler.Score = 0;
         displayQuestion.text = "Loading Question...";
         StartCoroutine(CallAPI());
     }
