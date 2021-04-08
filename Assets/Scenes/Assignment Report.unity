@@ -1964,8 +1964,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ReportGeneration, Assembly-CSharp
+      - m_Target: {fileID: 420190173}
+        m_TargetAssemblyTypeName: AssignmentReportGeneration, Assembly-CSharp
         m_MethodName: ChangeAccessCode
         m_Mode: 1
         m_Arguments:
