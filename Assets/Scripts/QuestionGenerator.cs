@@ -26,7 +26,7 @@ public class QuestionGenerator : MonoBehaviour
 
     public Button nextQuestion;
 
-    private int numberOfQuestions = QuizHandler.numOfQns;
+    public int numberOfQuestions = QuizHandler.numOfQns;
 
     IList<Question> QuestionList = new List<Question>(){
         new Question() { },
@@ -63,7 +63,7 @@ public class QuestionGenerator : MonoBehaviour
         
     }
 
-   IEnumerator CallAPI(){
+    IEnumerator CallAPI(){
         
         UnityWebRequest APIRequest = UnityWebRequest.Get(Url);
         APIRequest.certificateHandler = new WebRequestCert();   //force accept certificate
@@ -90,7 +90,7 @@ public class QuestionGenerator : MonoBehaviour
 
    }
 
-   void SetQuestions(int questionNumber){
+    void SetQuestions(int questionNumber){
         displayQuestion.text = QuestionList[questionNumber].question;
         displayAnswer1.text = QuestionList[questionNumber].answer1;
         displayAnswer2.text = QuestionList[questionNumber].answer2;

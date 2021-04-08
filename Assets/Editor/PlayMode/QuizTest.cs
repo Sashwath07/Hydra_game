@@ -3,26 +3,11 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 
-public class NewTestScript
+public class QuizTest
 {
-    // A Test behaves as an ordinary method
-    [Test]
-    public void NewTestScriptSimplePasses()
-    {
-        // Use the Assert class to test conditions
-    }
-
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator NewTestScriptWithEnumeratorPasses()
-    {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
-    }
-
+    
     [Test]
     public void CheckIfQuizScoreIsReset(){
         var score = QuizHandler.Score;
@@ -36,15 +21,28 @@ public class NewTestScript
     }
 
     // [UnityTest]
-    // public IEnumerator CheckQuestionsSet(){
+    // public IEnumerator CheckButtonsReset(){
+    //     GameObject gameObject = new GameObject();
+    //     gameObject.AddComponent<QuestionGenerator>();
+    //     gameObject.GetComponent<QuestionGenerator>().OnNextQuestion();
+    //     yield return new WaitForEndOfFrame();
+    //     yield return new WaitForEndOfFrame();
+    //     Assert.AreEqual(Color.white, gameObject.GetComponent<QuestionGenerator>().answerButton1.GetComponent<Image>().color);
+    //     Assert.AreEqual(Color.white, gameObject.GetComponent<QuestionGenerator>().answerButton2.GetComponent<Image>().color);
+    //     Assert.AreEqual(Color.white, gameObject.GetComponent<QuestionGenerator>().answerButton3.GetComponent<Image>().color);
+    //     Assert.AreEqual(Color.white, gameObject.GetComponent<QuestionGenerator>().answerButton4.GetComponent<Image>().color);
+
+    // }
+
+    // [Test]
+    // public void CheckButtonsReset2(){
     //     var gameObject = new GameObject();
     //     var questionGenerator = gameObject.AddComponent<QuestionGenerator>();
-    //     yield return new WaitForSeconds(5f);
-    //     Assert.IsNotEmpty(questionGenerator.displayQuestion.ToString());
-    //     Assert.IsNotEmpty(questionGenerator.displayAnswer1.ToString());
-    //     Assert.IsNotEmpty(questionGenerator.displayAnswer2.ToString());
-    //     Assert.IsNotEmpty(questionGenerator.displayAnswer3.ToString());
-    //     Assert.IsNotEmpty(questionGenerator.displayAnswer4.ToString());
+    //     questionGenerator.OnNextQuestion();
+    //     Assert.AreEqual(Color.white, questionGenerator.answerButton1.GetComponent<Image>().color);
+    //     Assert.AreEqual(Color.white, questionGenerator.answerButton2.GetComponent<Image>().color);
+    //     Assert.AreEqual(Color.white, questionGenerator.answerButton3.GetComponent<Image>().color);
+    //     Assert.AreEqual(Color.white, questionGenerator.answerButton4.GetComponent<Image>().color);
 
     // }
 }
