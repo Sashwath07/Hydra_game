@@ -57,7 +57,23 @@ public class QuestionGenerator : MonoBehaviour
             SetQuestions(numberOfQuestions-1);
             ResetButton();
         } else {
-            SceneManager.LoadScene("Quiz Ended");
+
+            if (ExtraQuestions.gameIsPaused == false)
+            {
+                SceneManager.LoadScene("Quiz Ended");
+            }
+            else
+            {
+                foreach (GameObject g in SceneManager.GetSceneByName(PlayerPrefs.GetString("scene")).GetRootGameObjects())
+                {
+                    g.SetActive(true);
+                }
+                PlayerStats.Money += QuizHandler.Score * 100;
+                PlayerStats.GameScore += QuizHandler.Score * 100;
+                Time.timeScale = 1;
+                SceneManager.UnloadSceneAsync("Quiz");
+            }
+
         }
         
     }
@@ -75,7 +91,7 @@ public class QuestionGenerator : MonoBehaviour
         }
 
         JSONNode file = JSON.Parse(APIRequest.downloadHandler.text);
-
+        /*
         for (int i = 0; i < QuestionList.Count; i++)
         {
             QuestionList[i].question = file["message"][i]["Question"];
@@ -84,7 +100,7 @@ public class QuestionGenerator : MonoBehaviour
             QuestionList[i].answer3 = file["message"][i]["Option3"];
             QuestionList[i].answer4 = file["message"][i]["Option4"];
             QuestionList[i].correctAnswer = file["message"][i]["Answer"];
-        }
+        }*/
         SetQuestions(3);
 
    }
