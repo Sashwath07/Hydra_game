@@ -91,7 +91,7 @@ public class QuestionGenerator : MonoBehaviour
         }
 
         JSONNode file = JSON.Parse(APIRequest.downloadHandler.text);
-        /*
+        
         for (int i = 0; i < QuestionList.Count; i++)
         {
             QuestionList[i].question = file["message"][i]["Question"];
@@ -100,7 +100,7 @@ public class QuestionGenerator : MonoBehaviour
             QuestionList[i].answer3 = file["message"][i]["Option3"];
             QuestionList[i].answer4 = file["message"][i]["Option4"];
             QuestionList[i].correctAnswer = file["message"][i]["Answer"];
-        }*/
+        }
         SetQuestions(3);
 
    }
