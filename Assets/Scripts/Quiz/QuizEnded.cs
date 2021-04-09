@@ -44,5 +44,5 @@ public class QuizEnded : MonoBehaviour
 
     public void OnSelectProceed(){
         SceneManager.LoadScene("World " + worldSelected + "-" + levelSelected);
-    }   
+    }
 }

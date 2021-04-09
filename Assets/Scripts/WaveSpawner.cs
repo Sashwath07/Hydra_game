@@ -15,7 +15,7 @@ public class WaveSpawner : MonoBehaviour
     private float countdown = 2f;
     public Text waveCountdownText;
     private int waveIndex = 0;
-    private bool isWaveDone = true;
+    public static bool isWaveDone = true;
 
     void Update()
     {
