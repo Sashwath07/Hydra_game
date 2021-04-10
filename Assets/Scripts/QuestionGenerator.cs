@@ -37,11 +37,11 @@ public class QuestionGenerator : MonoBehaviour
     private static string worldSelected = WorldSelect.worldSelected.ToString();
     private static string sectionSelected = SectionSelect.sectionSelected.ToString();
     private static string levelSelected = LevelSelect.levelSelected.ToString();
-    // private static string username = Login.username;
     // private static string worldSelected = "1";
     // private static string sectionSelected = "1";
     // private static string levelSelected = "1";
-    private static string username = "SHAFIQ002";
+
+    private static string username = Login.username;
     private static string baseUrl = "https://223.25.69.254:10002/retrieve_questions/world=";
     private string Url = baseUrl + worldSelected + "&section=" + sectionSelected + "&level=" + levelSelected + "&username=" + username;
 

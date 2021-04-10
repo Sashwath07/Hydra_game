@@ -18,8 +18,7 @@ public class QuizEnded : MonoBehaviour
     private static int worldSelected = WorldSelect.worldSelected;
     private static int sectionSelected = SectionSelect.sectionSelected;
     private static int levelSelected = LevelSelect.levelSelected;
-    // private static string username = Login.username;     //use this when log in page is set up
-    private static string username = "SHAFIQ002";
+    private static string username = Login.username;     //use this when log in page is set up
     private static string baseUrl = "https://223.25.69.254:10002/update_performance/username=";
     private string Url = baseUrl + username + "&world=" + worldSelected.ToString() + "&section=" + sectionSelected.ToString() + "&no_of_correct=" + QuizScore.ToString();
 
