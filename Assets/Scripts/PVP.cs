@@ -69,4 +69,9 @@ public class PVP : MonoBehaviour
         SceneManager.LoadScene("PVP Access Code");
         Debug.Log("Create game selected");
     }
+
+    public void OnSelectMainMenu(){
+        Debug.Log("Main Menu selected");
+        SceneManager.LoadScene("Main Menu");
+    }
 }
