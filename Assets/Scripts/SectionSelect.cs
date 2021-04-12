@@ -32,16 +32,19 @@ public class SectionSelect : MonoBehaviour
 
     public void OnSelectSection1(){
         sectionSelected = 1;
+        Debug.Log("Section " + sectionSelected.ToString() + " selected");
         SceneManager.LoadScene("Level Select");
     }
 
     public void OnSelectSection2(){
         sectionSelected = 2;
+        Debug.Log("Section " + sectionSelected.ToString() + " selected");
         SceneManager.LoadScene("Level Select");
     }
 
     public void OnSelectSection3(){
         sectionSelected = 3;
+        Debug.Log("Section " + sectionSelected.ToString() + " selected");
         SceneManager.LoadScene("Level Select");
     }        
 

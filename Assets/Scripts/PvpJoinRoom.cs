@@ -17,6 +17,7 @@ public class PvpJoinRoom : MonoBehaviour
     private static string baseUrl = "https://223.25.69.254:10002/enter_pvp_room/username=";
     // private static string Url = "https://223.25.69.254:10002/enter_pvp_room/username=<username>&access_code=<access_code>";
     public void OnJoinRoom(){
+        Debug.Log("Join room selected");
         accessCode = inputField.text;
         StartCoroutine(CallAPI());
     }
@@ -37,9 +38,11 @@ public class PvpJoinRoom : MonoBehaviour
         JSONNode APIinfo = JSON.Parse(APIRequest.downloadHandler.text);
         
         if (APIinfo["status_code"] == 400){
+            Debug.Log("Access code invalid");
             enterAccessCode.text = "Invalid code, please try again";
         }
         if (APIinfo["status_code"] == 200){
+            Debug.Log("Access code valid, joining room");
             enterAccessCode.text = "Joining room...";
             WorldSelect.worldSelected = APIinfo["message"]["Phase"];
             SectionSelect.sectionSelected = APIinfo["message"]["Section"];

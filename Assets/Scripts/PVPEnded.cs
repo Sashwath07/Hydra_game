@@ -41,7 +41,7 @@ public class PVPEnded : MonoBehaviour
         }
 
         JSONNode APIinfo = JSON.Parse(APIRequest.downloadHandler.text);
-        Debug.Log(APIinfo["message"]);
+        Debug.Log(APIinfo["message"]);  //end pvp message
 
         
     }
@@ -60,6 +60,7 @@ public class PVPEnded : MonoBehaviour
 
         JSONNode APIinfo = JSON.Parse(APIRequest.downloadHandler.text);
         if (APIinfo["status_code"] == 200){
+            Debug.Log("Winner determined");
             display.text = APIinfo["message"];
             mainMenu.gameObject.SetActive(true);
         } else{
@@ -69,6 +70,7 @@ public class PVPEnded : MonoBehaviour
     }
 
     public void OnSelectMainMenu(){
+        Debug.Log("Main Menu selected");
         PlayerStats.GameScore = 0;
         QuizHandler.Score = 0;
         SceneManager.LoadScene("Main Menu");

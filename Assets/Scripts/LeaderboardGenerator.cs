@@ -63,14 +63,16 @@ public class LeaderboardGenerator : MonoBehaviour
         ninthPlace.text     = "9. " + (string)file["message"][8]["Username"] + " " + (string)file["message"][8]["Points"];
         tenthPlace.text     = "10. " + (string)file["message"][9]["Username"] + " " + (string)file["message"][9]["Points"];
         PlayerPosition.text = (string)file["message"][playerIndex]["Position"] + ". "+ (string)file["message"][playerIndex]["Username"] + " " + (string)file["message"][playerIndex]["Points"];
-
+        Debug.Log("Leaderboard generated");
     }
 
     public void OnSelectMainMenu(){
         if (Login.usertype == "0") {
+            Debug.Log("Main Menu Selected");
             SceneManager.LoadScene("Main Menu");
         }
         else if (Login.usertype == "1") {
+            Debug.Log("Teacher Menu selected");
             SceneManager.LoadScene("Teacher Menu");
         }
     }

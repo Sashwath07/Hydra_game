@@ -26,46 +26,47 @@ public class PVP : MonoBehaviour
 
     public void SelectWorld(int val){
         if (val == 1){
-            Debug.Log("World 1");
             WorldSelected = 1;
+            Debug.Log("World " + WorldSelected.ToString() + " selected");
         }
         if (val == 2){
-            Debug.Log("World 2");       
             WorldSelected  = 2;    
+            Debug.Log("World " + WorldSelected.ToString() + " selected");
         }
     }
 
     public void SelectSection(int val){
         if (val == 1){
-            Debug.Log("Section 1");
             SectionSelected = 1;
+            Debug.Log("Section " + SectionSelected.ToString() + " selected");
         }
         if (val == 2){
-            Debug.Log("Section 2");
-            SectionSelected = 2;           
+            SectionSelected = 2;   
+            Debug.Log("Section " + SectionSelected.ToString() + " selected");        
         }
         if (val == 3){
-            Debug.Log("Section 3");
-            SectionSelected = 3;           
+            SectionSelected = 3;
+            Debug.Log("Section " + SectionSelected.ToString() + " selected");           
         }
     }
 
     public void SelectLevel(int val){
         if (val == 1){
-            Debug.Log("Level 1");
             LevelSelected = 1;
+            Debug.Log("Level " + LevelSelected.ToString() + " selected");
         }
         if (val == 2){
-            Debug.Log("Level 2");   
-            LevelSelected = 2;        
+            LevelSelected = 2;      
+            Debug.Log("Level " + LevelSelected.ToString() + " selected");  
         }
         if (val == 3){
-            Debug.Log("Level 3");    
-            LevelSelected = 3;       
+            LevelSelected = 3; 
+            Debug.Log("Level " + LevelSelected.ToString() + " selected");      
         }
     }
 
     public void OnSelectCreateGame(){
         SceneManager.LoadScene("PVP Access Code");
+        Debug.Log("Create game selected");
     }
 }
