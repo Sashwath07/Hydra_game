@@ -22,6 +22,11 @@ public class PvpJoinRoom : MonoBehaviour
         StartCoroutine(CallAPI());
     }
 
+    public void OnSelectMainMenu(){
+        Debug.Log("Main Menu selected");
+        SceneManager.LoadScene("Main Menu");
+    }
+
     IEnumerator CallAPI(){
         string APIUrl = baseUrl + username + "&access_code=" + accessCode;
 
