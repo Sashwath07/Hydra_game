@@ -38,6 +38,7 @@ public class AvatarSelect : MonoBehaviour
         string APIinfoCode = APIinfo["status_code"];
 
         if (APIinfoMessage == "in game account created") {
+            Debug.Log("Avatar Selection Successful.");
             CharacterSelection.gameObject.SetActive(false);
             LoginImage.gameObject.SetActive(true);
         }
