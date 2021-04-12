@@ -13,16 +13,19 @@ public class LevelSelect : MonoBehaviour
 
     public void OnSelectSection1(){
         levelSelected = 1;
+        Debug.Log("Level " + levelSelected.ToString() + " selected");
         SceneManager.LoadScene("Quiz");
     }
 
     public void OnSelectSection2(){
         levelSelected = 2;
+        Debug.Log("Level " + levelSelected.ToString() + " selected");
         SceneManager.LoadScene("Quiz");
     }
 
     public void OnSelectSection3(){
         levelSelected = 3;
+        Debug.Log("Level " + levelSelected.ToString() + " selected");
         SceneManager.LoadScene("Quiz");
     }
 
