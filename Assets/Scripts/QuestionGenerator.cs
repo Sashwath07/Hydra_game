@@ -103,6 +103,7 @@ public class QuestionGenerator : MonoBehaviour
             QuestionList[i].correctAnswer = file["message"][i]["Answer"];
         }
         SetQuestions(3);
+        Debug.Log("Questions generated");
 
    }
 
@@ -183,9 +184,11 @@ public class QuestionGenerator : MonoBehaviour
         if (correctAnswer == selectedAnswer){
             QuizHandler.Score += 1;
             displayScore.text = "Score: " + QuizHandler.Score.ToString();
+            Debug.Log("Answer is correct");
             return true;
 
         } else{
+            Debug.Log("Answer is wrong");
             return false;
     }
 
