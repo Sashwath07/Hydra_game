@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
 
     void Die(){
         PlayerStats.Money += value;
+        Debug.Log("Money increased by $50");
         PlayerStats.GameScore += value * (QuizHandler.Score + 1);
         
         GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
@@ -43,6 +44,7 @@ public class Enemy : MonoBehaviour
         WaveSpawner.EnemiesAlive--;
 
         Destroy(gameObject);
+        Debug.Log("Enemy destroyed");
     }
 
     void Update(){
@@ -66,5 +68,6 @@ public class Enemy : MonoBehaviour
         PlayerStats.Lives--;
         WaveSpawner.EnemiesAlive--;
         Destroy(gameObject);
+        Debug.Log("Enemy destroyed, 1 life lost");
     }
 }

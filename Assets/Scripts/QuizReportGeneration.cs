@@ -42,7 +42,7 @@ public class QuizReportGeneration : MonoBehaviour
         Section1Topic2.text = APIinfo["message"][3]["Performance"] + "\n Section " + APIinfo["message"][3]["Section"] + " Topic " + APIinfo["message"][3]["Topic"];
         Section2Topic2.text = APIinfo["message"][4]["Performance"] + "\n Section " + APIinfo["message"][4]["Section"] + " Topic " + APIinfo["message"][4]["Topic"];
         Section3Topic2.text = APIinfo["message"][5]["Performance"] + "\n Section " + APIinfo["message"][5]["Section"] + " Topic " + APIinfo["message"][5]["Topic"];
-
+        Debug.Log("Quiz report generated");
     }
 
     

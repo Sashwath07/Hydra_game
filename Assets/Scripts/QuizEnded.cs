@@ -39,9 +39,11 @@ public class QuizEnded : MonoBehaviour
             Debug.LogError(APIRequest.error);
             yield break;
         }
+        Debug.Log("Quiz score updated");
     }  
 
     public void OnSelectProceed(){
+        Debug.Log("Starting game");
         SceneManager.LoadScene("World " + worldSelected + "-" + levelSelected);
     }
 }

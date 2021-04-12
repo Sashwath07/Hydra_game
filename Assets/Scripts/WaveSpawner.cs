@@ -23,6 +23,7 @@ public class WaveSpawner : MonoBehaviour
         if (countdown <= 0f)
         {
             isWaveDone = false;
+            Debug.Log("New wave!");
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
             return;
