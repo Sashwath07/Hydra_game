@@ -18,6 +18,9 @@ public class PVP : MonoBehaviour
 
     public Button CreateGame;
 
+    public TMP_Dropdown WorldDropdown;
+    public TMP_Dropdown SectionDropdown;
+
     void Start(){
         CreateGame.gameObject.SetActive(false);
     }

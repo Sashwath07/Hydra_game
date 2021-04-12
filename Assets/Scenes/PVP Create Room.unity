@@ -768,7 +768,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.5, y: -0.5}
+  m_AnchoredPosition: {x: -7.5, y: -0.4999962}
   m_SizeDelta: {x: -35, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &107605470
@@ -1532,6 +1532,8 @@ MonoBehaviour:
   WorldDropdown: {fileID: 1817539761}
   SectionDropdown: {fileID: 1007561672}
   CreateGame: {fileID: 260978466}
+  WorldDropdown: {fileID: 1817539761}
+  SectionDropdown: {fileID: 1007561672}
 --- !u!114 &530450139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2949,7 +2951,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 120.999916, y: 11.3792}
-  m_SizeDelta: {x: 277.7287, y: 113.5001}
+  m_SizeDelta: {x: 259.09, y: 123.9142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007561672
 MonoBehaviour:
@@ -3419,7 +3421,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 121.00001, y: -144.17876}
-  m_SizeDelta: {x: 277.73, y: 107.6965}
+  m_SizeDelta: {x: 259.09, y: 123.9141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146820140
 MonoBehaviour:
@@ -4049,7 +4051,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.5, y: -0.5}
+  m_AnchoredPosition: {x: -7.5000153, y: -0.5}
   m_SizeDelta: {x: -35, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1494716319
@@ -4374,7 +4376,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 121, y: 166}
-  m_SizeDelta: {x: 277.73, y: 113.5001}
+  m_SizeDelta: {x: 259.0932, y: 120.8028}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817539761
 MonoBehaviour:
