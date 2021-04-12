@@ -39,15 +39,17 @@ public class Register : MonoBehaviour
         string APIinfoCode = APIinfo["status_code"];
 
         if (APIinfoMessage == "account created") {
+            Debug.Log("Registration Successful");
             RegisterImage.gameObject.SetActive(false);
             CharacterSelection.gameObject.SetActive(true);
         }
         else if (APIinfoMessage == "Sorry, that username already exists. Please try a different one.") {
+            Debug.Log("Registration Failed. Username already exists.");
             RegisterFeedback.text = "Username already exist!";
             RegisterFeedback.gameObject.SetActive(true);
         }
         else {
-            Debug.Log("Error at Register");
+            Debug.Log("Error at Registration.");
             Debug.Log(URL);
             Debug.Log("message = " + APIinfoMessage);
             Debug.Log("code = " + APIinfoCode);            
@@ -62,11 +64,13 @@ public class Register : MonoBehaviour
     void Start()
     {
         RegisterAccountButton.onClick.AddListener(() => {
-            if (NewUsernameInput.text == "" || NewPasswordInput.text == "" || ConfirmPasswordInput.text == "") {       
+            if (NewUsernameInput.text == "" || NewPasswordInput.text == "" || ConfirmPasswordInput.text == "") {   
+                Debug.Log("Registration Failed. Username or Password field empty.");    
                 RegisterFeedback.text = "Username or Password field is empty!";
                 RegisterFeedback.gameObject.SetActive(true);
             }
             else if (NewPasswordInput.text != ConfirmPasswordInput.text) {
+                Debug.Log("Registration Failed. Password and Confirm Password different.");
                 RegisterFeedback.text = "Password and Confirm Password are different!";
                 RegisterFeedback.gameObject.SetActive(true);
             }

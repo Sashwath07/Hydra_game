@@ -39,13 +39,16 @@ public class Login : MonoBehaviour
 
         if (APIinfoMessage == "authorized login") {
             if (UserType.value == 0) {   
+                Debug.Log("Student Login Successful");
                 SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
             }
             else if (UserType.value == 1) {
+                Debug.Log("Teacher Login Successful");
                 SceneManager.LoadScene("Teacher Menu", LoadSceneMode.Single);
             }
         }
         else if (APIinfoMessage == "unauthorized login") {
+            Debug.Log("Login Failed. Wrong Username or Password.");
             LoginFeedback.text = "Wrong Username or Password!";
             LoginFeedback.gameObject.SetActive(true);
         }
@@ -66,6 +69,7 @@ public class Login : MonoBehaviour
         LoginButton.onClick.AddListener(() => {
 
             if (UsernameInput.text == "" || PasswordInput.text == "") {       
+                Debug.Log("Login Failed. Username or Password field empty.");
                 LoginFeedback.text = "Username or Password field is empty!";
                 LoginFeedback.gameObject.SetActive(true);
             }
