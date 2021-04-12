@@ -13,6 +13,9 @@ public class PVP : MonoBehaviour
 
     public static bool isPvp;
 
+    public TMP_Dropdown WorldDropdown;
+    public TMP_Dropdown SectionDropdown;
+
     public Button CreateGame;
 
     public TMP_Dropdown WorldDropdown;
@@ -98,12 +101,14 @@ public class PVP : MonoBehaviour
     }
 
     public void OnSelectCreateGame(){
+        Debug.Log("Create game selected");
         SceneManager.LoadScene("PVP Access Code");
         Debug.Log("Create game selected");
     }
 
     public void OnSelectMainMenu(){
         Debug.Log("Main Menu selected");
+        CreateGame.gameObject.SetActive(false);
         SceneManager.LoadScene("Main Menu");
     }
 }
