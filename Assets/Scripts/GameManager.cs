@@ -48,7 +48,15 @@ public class GameManager : MonoBehaviour
 
     void EndGame(){
         GameIsOver = true;
-        
+        if(LevelCompleted)
+        {
+            Debug.Log("Level completed, Player score: " + PlayerStats.GameScore);
+
+        }
+        else
+        {
+            Debug.Log("Game ended, Player score: " + PlayerStats.GameScore);
+        }
 
         if (!PVP.isPvp){
             gameOverUI.SetActive(true);

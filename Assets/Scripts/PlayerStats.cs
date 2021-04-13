@@ -16,7 +16,10 @@ public class PlayerStats : MonoBehaviour
 
     void Start(){
         //Money = startMoney;
+        Debug.Log("Player score: " + QuizHandler.Score);
         Money = (1+QuizHandler.Score) * 100 + startMoney;
+
+        Debug.Log("Player's starting money is $" + Money);
         Lives = startLives;
         GameScore = 0;
 
