@@ -13,18 +13,21 @@ public class LevelSelect : MonoBehaviour
 
     public void OnSelectSection1(){
         levelSelected = 1;
+        PVP.isPvp = false;
         Debug.Log("Level " + levelSelected.ToString() + " selected");
         SceneManager.LoadScene("Quiz");
     }
 
     public void OnSelectSection2(){
         levelSelected = 2;
+        PVP.isPvp = false;
         Debug.Log("Level " + levelSelected.ToString() + " selected");
         SceneManager.LoadScene("Quiz");
     }
 
     public void OnSelectSection3(){
         levelSelected = 3;
+        PVP.isPvp = false;
         Debug.Log("Level " + levelSelected.ToString() + " selected");
         SceneManager.LoadScene("Quiz");
     }
