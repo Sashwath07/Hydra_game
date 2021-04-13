@@ -36,12 +36,19 @@ public class QuizReportGeneration : MonoBehaviour
 
         JSONNode APIinfo = JSON.Parse(APIRequest.downloadHandler.text);
 
-        Section1Topic1.text = APIinfo["message"][0]["Performance"] + "\n Section " + APIinfo["message"][0]["Section"] + " Topic " + APIinfo["message"][0]["Topic"];
-        Section2Topic1.text = APIinfo["message"][1]["Performance"] + "\n Section " + APIinfo["message"][1]["Section"] + " Topic " + APIinfo["message"][1]["Topic"];
-        Section3Topic1.text = APIinfo["message"][2]["Performance"] + "\n Section " + APIinfo["message"][2]["Section"] + " Topic " + APIinfo["message"][2]["Topic"];
-        Section1Topic2.text = APIinfo["message"][3]["Performance"] + "\n Section " + APIinfo["message"][3]["Section"] + " Topic " + APIinfo["message"][3]["Topic"];
-        Section2Topic2.text = APIinfo["message"][4]["Performance"] + "\n Section " + APIinfo["message"][4]["Section"] + " Topic " + APIinfo["message"][4]["Topic"];
-        Section3Topic2.text = APIinfo["message"][5]["Performance"] + "\n Section " + APIinfo["message"][5]["Section"] + " Topic " + APIinfo["message"][5]["Topic"];
+        // Section1Topic1.text = APIinfo["message"][0]["Performance"] + "\n Section " + APIinfo["message"][0]["Section"] + " Topic " + APIinfo["message"][0]["Topic"];
+        // Section2Topic1.text = APIinfo["message"][1]["Performance"] + "\n Section " + APIinfo["message"][1]["Section"] + " Topic " + APIinfo["message"][1]["Topic"];
+        // Section3Topic1.text = APIinfo["message"][2]["Performance"] + "\n Section " + APIinfo["message"][2]["Section"] + " Topic " + APIinfo["message"][2]["Topic"];
+        // Section1Topic2.text = APIinfo["message"][3]["Performance"] + "\n Section " + APIinfo["message"][3]["Section"] + " Topic " + APIinfo["message"][3]["Topic"];
+        // Section2Topic2.text = APIinfo["message"][4]["Performance"] + "\n Section " + APIinfo["message"][4]["Section"] + " Topic " + APIinfo["message"][4]["Topic"];
+        // Section3Topic2.text = APIinfo["message"][5]["Performance"] + "\n Section " + APIinfo["message"][5]["Section"] + " Topic " + APIinfo["message"][5]["Topic"];
+        
+        Section1Topic1.text = APIinfo["message"][0]["Performance"] + "\n Requirement Elicitation Techniques";
+        Section2Topic1.text = APIinfo["message"][1]["Performance"] + "\n Software Engineering basics";
+        Section3Topic1.text = APIinfo["message"][2]["Performance"] + "\n Requirement Engineering";
+        Section1Topic2.text = APIinfo["message"][3]["Performance"] + "\n UML basics";
+        Section2Topic2.text = APIinfo["message"][4]["Performance"] + "\n UML Diagrams 1";
+        Section3Topic2.text = APIinfo["message"][5]["Performance"] + "\n UML Diagrams 2";
         Debug.Log("Quiz report generated");
     }
 
