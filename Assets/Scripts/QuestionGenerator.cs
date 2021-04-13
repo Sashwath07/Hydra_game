@@ -63,7 +63,7 @@ public class QuestionGenerator : MonoBehaviour
             {
                 SceneManager.LoadScene("Quiz Ended");
             }
-            else
+            else //Extra questions during game.
             {
                 foreach (GameObject g in SceneManager.GetSceneByName(PlayerPrefs.GetString("scene")).GetRootGameObjects())
                 {

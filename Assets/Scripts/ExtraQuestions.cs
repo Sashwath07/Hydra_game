@@ -18,6 +18,10 @@ public class ExtraQuestions : MonoBehaviour
             extraQuestions.interactable = WaveSpawner.isWaveDone;
             questionCount.text = "Extra Questions ("+ PlayerStats.questionCount.ToString() + ")";
         }
+        else
+        {
+            extraQuestions.interactable = false;
+        }
     }
     public void StartQuestions()
     {
@@ -25,6 +29,7 @@ public class ExtraQuestions : MonoBehaviour
         if (PlayerStats.questionCount >0)
         {
             PlayerStats.questionCount--;
+            Debug.Log(PlayerStats.questionCount + " questions left.");
             Time.timeScale = 0;
             gameIsPaused = true;
 
@@ -39,7 +44,10 @@ public class ExtraQuestions : MonoBehaviour
 
             SceneManager.LoadScene("Quiz", LoadSceneMode.Additive);
         }
-
+        else
+        {
+            Debug.Log("No more extra questions!");
+        }
     }
 
 }

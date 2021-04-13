@@ -44,7 +44,7 @@ public class WaveSpawner : MonoBehaviour
         PlayerStats.Rounds++;
 
         Wave wave = waves[waveIndex];
-
+        Debug.Log("Wave " + (waveIndex+1));
         for (int i = 0; i < wave.count.Length; i++)
         {
             for (int j = 0; j < wave.count[i]; j++)
@@ -56,6 +56,8 @@ public class WaveSpawner : MonoBehaviour
         isWaveDone = true;
         PlayerStats.Money += 100;
         waveIndex++;
+
+        Debug.Log("Wave " + waveIndex + " completed!");
 
         if (waveIndex == waves.Length)
         {
@@ -70,5 +72,6 @@ public class WaveSpawner : MonoBehaviour
     {
         Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
         EnemiesAlive++;
+
     }
 }
