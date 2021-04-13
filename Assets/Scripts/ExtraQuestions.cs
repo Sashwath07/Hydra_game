@@ -22,20 +22,24 @@ public class ExtraQuestions : MonoBehaviour
     public void StartQuestions()
     {
 
-        PlayerStats.questionCount--;
-        Time.timeScale = 0;
-        gameIsPaused = true;
-
-        QuizHandler.numOfQns = 1;
-        currentScene = SceneManager.GetActiveScene().name;
-        PlayerPrefs.SetString("scene", currentScene);
-
-        foreach (GameObject g in SceneManager.GetActiveScene().GetRootGameObjects())
+        if (PlayerStats.questionCount >0)
         {
-            g.SetActive(false);
+            PlayerStats.questionCount--;
+            Time.timeScale = 0;
+            gameIsPaused = true;
+
+            QuizHandler.numOfQns = 1;
+            currentScene = SceneManager.GetActiveScene().name;
+            PlayerPrefs.SetString("scene", currentScene);
+
+            foreach (GameObject g in SceneManager.GetActiveScene().GetRootGameObjects())
+            {
+                g.SetActive(false);
+            }
+
+            SceneManager.LoadScene("Quiz", LoadSceneMode.Additive);
         }
 
-        SceneManager.LoadScene("Quiz", LoadSceneMode.Additive);
     }
 
 }
